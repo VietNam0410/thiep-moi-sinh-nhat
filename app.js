@@ -1,1 +1,15 @@
-SEE_FILE
+const CONFIG = {
+  invitationLetter: `M\u00ecnh vi\u1ebft v\u00e0i d\u00f2ng n\u00e0y\nv\u1edbi r\u1ea5t nhi\u1ec1u ch\u00e2n th\u00e0nh.\n\nTu\u1ed5i m\u1edbi s\u1eafp t\u1edbi \u2014\nm\u00ecnh mu\u1ed1n \u0111\u01b0\u1ee3c ng\u1ed3i c\u00f9ng\nnh\u1eefng ng\u01b0\u1eddi quan tr\u1ecdng,\nu\u1ed1ng m\u1ed9t ly, k\u1ec3 v\u00e0i c\u00e2u chuy\u1ec7n,\nv\u00e0 c\u1ea3m \u01a1n v\u00ec \u0111\u00e3 \u1edf b\u00ean.\n\nKh\u00f4ng c\u1ea7n mang g\u00ec c\u1ea7u k\u1ef3.\nCh\u1ec9 c\u1ea7n b\u1ea1n t\u1edbi l\u00e0 \u0111\u1ee7\n\u0111\u1ec3 bu\u1ed5i t\u1ed1i \u1ea5y tr\u1edf n\u00ean \u0111\u1eb7c bi\u1ec7t.\n\nH\u1eb9n g\u1eb7p b\u1ea1n\nv\u00e0o t\u1ed1i th\u1ee9 B\u1ea3y t\u1ea1i T\u00e0 V\u1eb9t.`,
+  senderName: 'Vi\u1ec7t Nam',
+  eventDate: '03/10/2026',
+  eventDow: 'Th\u1ee9 B\u1ea3y',
+  eventTime: 'T\u1eeb 18:00',
+  eventPlace: 'T\u00e0 V\u1eb9t Coffee & Pub',
+  eventAddress: '11 V\u00f5 Th\u1ecb S\u00e1u, Hu\u1ebf',
+  eventMapsUrl: 'https://maps.google.com/?q=T\u00e0+V\u1eb9t+Coffee+Pub+11+V\u00f5+Th\u1ecb+S\u00e1u+Hu\u1ebf',
+  eventDateISO: '2026-10-03',
+  wishlistNormal: ['V\u1ee3t c\u1ea7u l\u00f4ng', 'Gi\u00e0y c\u1ea7u l\u00f4ng', 'Balo c\u1ea7u l\u00f4ng', '\u1ed0ng c\u1ea7u'],
+  wishlistSpecial: ['S\u1ef1 c\u00f3 m\u1eb7t c\u1ee7a b\u1ea1n t\u1ea1i b\u1eefa ti\u1ec7c'],
+  gasEndpoint: 'https://script.google.com/macros/s/AKfycbyNPJAmfy_V-MpDqFqqMg1MrfR7U7u2RgRA9mXdxnAV3d4kge8OpRkBrNrlDJaMKl-G3A/exec',
+  sheetUrl: ''
+};
