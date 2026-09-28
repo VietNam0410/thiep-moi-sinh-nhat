@@ -8,7 +8,7 @@ eventPlace:'Tà Vẹt Coffee & Pub',
 eventAddress:'11 Võ Thị Sáu, Huế',
 eventMapsUrl:'https://maps.google.com/?q=Tà+Vẹt+Coffee+Pub+11+Võ+Thị+Sáu+Huế',
 eventDateISO:'2026-10-03',
-wishlistNormal:['Cây bút chì','Quyển vở','Balo cầu lông','Vợt cầu lông','Cán vợt','Giày cầu lông','Tất cầu lông','Ống cầu'],
+wishlistNormal:['Cây bút chì','Quyển vở','Balo cầu lông'],
 wishlistSpecial:['Sự có mặt của bạn tại bữa tiệc'],
 gasEndpoint:'https://script.google.com/macros/s/AKfycbyNPJAmfy_V-MpDqFqqMg1MrfR7U7u2RgRA9mXdxnAV3d4kge8OpRkBrNrlDJaMKl-G3A/exec',
 sheetUrl:''
