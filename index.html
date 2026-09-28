@@ -5,26 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="theme-color" content="#1a1612" />
   <title>Thiệp Mời — Việt Nam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;width:100%;overflow:hidden;font-family:system-ui,sans-serif;background:#1a1612}
-    #app{position:relative;width:100%;height:100%;max-width:430px;margin:0 auto;background:#f5f0e6;overflow:hidden}
-    .scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;z-index:1;overflow:hidden}
+    html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',system-ui,sans-serif;background:#1a1612;color:#2c2118;-webkit-font-smoothing:antialiased;touch-action:manipulation}
+    :root{--paper:#f5f0e6;--cream:#faf6f0;--ivory:#fffdf8;--brown:#5c4033;--brown-light:#8b6f5c;--gold:#c9a84c;--gold-soft:#d4b96a;--ink:#2c2118;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px)}
+    #app{position:relative;width:100%;height:100%;max-width:430px;margin:0 auto;background:var(--paper);overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.5)}
+    @media(min-width:431px){body{display:flex;align-items:center;justify-content:center;background:#0f0d0b}#app{height:min(100vh,860px);border-radius:24px;border:1px solid rgba(201,168,76,.2)}}
+    .scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(20px + var(--safe-top)) 20px calc(20px + var(--safe-bottom));opacity:0;pointer-events:none;z-index:1;overflow:hidden}
     .scene.active{opacity:1;pointer-events:auto;z-index:10}
+    .paper-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 20%,rgba(201,168,76,.06),transparent 50%),linear-gradient(180deg,var(--cream),var(--paper) 55%,#ebe4d6)}
     #scene-horses{background:linear-gradient(180deg,#1a2a1a,#2a3a2a 40%,#3d4a30 100%)}
     .sky-stars{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-    .sky-stars span{position:absolute;width:2px;height:2px;background:#f5e6c8;border-radius:50%;opacity:.5}
-    .moon{position:absolute;top:12%;right:14%;width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f5e8c8,#d4b96a);z-index:1}
-    .ground{position:absolute;bottom:0;left:0;right:0;height:32%;background:linear-gradient(180deg,#4a6a40,#2a3a28);z-index:2}
-    .horse-track{position:absolute;bottom:8%;left:0;right:0;height:200px;overflow:visible;pointer-events:none;z-index:3}
-    .horse{position:absolute;bottom:0;will-change:transform;transform-origin:center bottom;image-rendering:pixelated;image-rendering:crisp-edges}
-    .horse.far{opacity:.65}.horse.mid{opacity:.9}.horse.near{opacity:1}
+    .sky-stars span{position:absolute;width:2px;height:2px;background:#f5e6c8;border-radius:50%;opacity:.5;animation:twinkle 2.5s ease-in-out infinite}
+    @keyframes twinkle{0%,100%{opacity:.2}50%{opacity:.95}}
+    .moon{position:absolute;top:12%;right:14%;width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f5e8c8,#d4b96a 60%,#a89050);box-shadow:0 0 40px rgba(212,185,106,.35);opacity:.85;z-index:1}
+    .ground{position:absolute;bottom:0;left:0;right:0;height:32%;background:linear-gradient(180deg,#4a6a40,#3a5535 40%,#2a3a28 100%);z-index:2}
+    .horse-track{position:absolute;bottom:10%;left:0;right:0;height:180px;overflow:visible;pointer-events:none;z-index:3}
+    .horse{position:absolute;bottom:0;will-change:transform;transform-origin:center bottom;image-rendering:pixelated;image-rendering:crisp-edges;backface-visibility:hidden}
+    .horse.far{opacity:.6}.horse.mid{opacity:.88}.horse.near{opacity:1}
+    #fw-canvas{position:absolute;inset:0;pointer-events:none;z-index:8}
     .dust{position:absolute;bottom:18%;left:0;right:0;height:50px;pointer-events:none;z-index:2;overflow:hidden}
     .dust i{position:absolute;bottom:0;width:8px;height:8px;border-radius:50%;background:rgba(200,180,140,.5);opacity:0}
-    .horses-caption{position:relative;z-index:5;text-align:center;color:rgba(245,230,200,.92);font-size:15px;margin-top:auto;margin-bottom:52px;opacity:0}
-    .horses-caption strong{display:block;font-size:19px;color:#d4b96a;margin-bottom:6px}
-    .sound-hint{position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:12px;color:rgba(245,230,200,.6);opacity:0;z-index:6}
+    .horses-caption{position:relative;z-index:5;text-align:center;color:rgba(245,230,200,.92);font-size:15px;letter-spacing:.06em;margin-top:auto;margin-bottom:52px;opacity:0}
+    .horses-caption strong{display:block;font-size:19px;color:var(--gold-soft);font-weight:500;margin-bottom:6px}
+    .sound-hint{position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:12px;color:rgba(245,230,200,.55);opacity:0;z-index:6}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;border:none;border-radius:14px;font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;transition:transform .15s,box-shadow .15s;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    .btn:active{transform:scale(.97)}
+    .btn-primary{background:linear-gradient(135deg,var(--gold),#b8943a);color:#fff;box-shadow:0 6px 20px rgba(201,168,76,.35)}
+    .btn-ghost{background:rgba(255,255,255,.5);color:var(--brown);border:1px solid rgba(139,111,92,.25)}
+    .btn-large{width:100%;max-width:280px;padding:16px 32px;font-size:16px}
+    .scene-title{font-size:20px;font-weight:600;color:var(--ink);text-align:center;margin-bottom:8px;line-height:1.35;max-width:300px;z-index:2;position:relative}
+    .scene-subtitle{font-size:13px;color:var(--brown-light);text-align:center;margin-bottom:28px;line-height:1.6;max-width:280px;z-index:2;position:relative}
+    .form-group{width:100%;max-width:320px;margin-bottom:18px;z-index:2;position:relative}
+    .form-label{display:block;font-size:13px;color:var(--brown);margin-bottom:8px}
+    .form-input,.form-select{width:100%;padding:14px 16px;border:1.5px solid rgba(139,111,92,.2);border-radius:12px;font-family:inherit;font-size:15px;background:rgba(255,255,255,.7);color:var(--ink);outline:none}
+    .form-input:focus,.form-select:focus{border-color:var(--gold);background:#fff}
+    .form-actions{width:100%;max-width:320px;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:2;margin-top:8px}
+    .envelope-wrap{position:relative;width:260px;height:180px;cursor:pointer;z-index:2}
+    .envelope-body{position:absolute;inset:0;background:linear-gradient(160deg,#f0e6d4,#e8dcc8);border-radius:8px;box-shadow:0 12px 40px rgba(0,0,0,.15);overflow:hidden}
+    .envelope-body::before{content:'';position:absolute;top:0;left:0;right:0;height:50%;background:linear-gradient(180deg,transparent 40%,rgba(201,168,76,.08));clip-path:polygon(0 0,50% 70%,100% 0)}
+    .envelope-flap{position:absolute;top:0;left:0;right:0;height:55%;background:linear-gradient(180deg,#e8dcc8,#d4c4a8);clip-path:polygon(0 0,50% 100%,100% 0);transform-origin:top center;z-index:3;border-radius:8px 8px 0 0}
+    .envelope-seal{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--gold),#a67c2a);box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:4}
+    .envelope-letter-peek{position:absolute;bottom:20%;left:10%;right:10%;height:40%;background:var(--ivory);border-radius:4px;z-index:1;box-shadow:0 -2px 8px rgba(0,0,0,.06)}
+    .envelope-hint{margin-top:20px;font-size:13px;color:var(--brown-light);z-index:2}
+    #scene-letter{justify-content:flex-start;padding-top:calc(16px + var(--safe-top));padding-bottom:calc(28px + var(--safe-bottom));overflow-y:auto;-webkit-overflow-scrolling:touch}
+    .letter-sheet{width:100%;max-width:340px;background:var(--ivory);border-radius:12px;padding:28px 24px;box-shadow:0 8px 32px rgba(0,0,0,.08);z-index:2;position:relative;margin-bottom:20px}
+    .letter-greeting{font-size:16px;color:var(--ink);margin-bottom:16px;font-weight:500}
+    .letter-body{font-size:15px;line-height:1.75;color:var(--brown);min-height:120px}
+    .letter-body .line{display:block;opacity:0}
+    .letter-body .line.is-break{height:12px}
+    .letter-closing{margin-top:24px;text-align:right;opacity:0}
+    .letter-sign{font-family:'Great Vibes',cursive;font-size:28px;color:var(--ink)}
+    .letter-sign-sub{font-size:12px;color:var(--brown-light);margin-top:4px}
+    .info-card{width:100%;max-width:340px;background:rgba(255,255,255,.75);border-radius:16px;padding:24px;z-index:2;box-shadow:0 8px 28px rgba(0,0,0,.06)}
+    .info-row{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid rgba(139,111,92,.1)}
+    .info-row:last-child{border-bottom:none}
+    .info-icon{font-size:22px;width:32px;text-align:center;flex-shrink:0}
+    .info-label{font-size:12px;color:var(--brown-light);margin-bottom:2px}
+    .info-value{font-size:15px;color:var(--ink);font-weight:500}
+    .wish-section{width:100%;max-width:340px;z-index:2;margin-bottom:16px}
+    .wish-section h3{font-size:14px;color:var(--brown);margin-bottom:10px;font-weight:500}
+    .wish-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,.6);border-radius:12px;margin-bottom:8px;cursor:pointer;border:1.5px solid transparent;transition:border-color .2s,background .2s}
+    .wish-item.selected{border-color:var(--gold);background:rgba(201,168,76,.1)}
+    .wish-item.special{background:rgba(201,168,76,.08)}
+    .wish-check{width:22px;height:22px;border-radius:6px;border:1.5px solid rgba(139,111,92,.3);display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;flex-shrink:0}
+    .wish-item.selected .wish-check{background:var(--gold);border-color:var(--gold);color:#fff}
+    .wish-label{font-size:14px;color:var(--ink)}
+    .summary-card{width:100%;max-width:340px;background:rgba(255,255,255,.75);border-radius:16px;padding:20px;z-index:2;margin-bottom:20px}
+    .summary-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(139,111,92,.1);font-size:14px}
+    .summary-row:last-child{border-bottom:none}
+    .summary-key{color:var(--brown-light)}
+    .summary-val{color:var(--ink);font-weight:500;text-align:right;max-width:60%}
+    #confetti-canvas{position:absolute;inset:0;pointer-events:none;z-index:100}
+    .thanks-content{text-align:center;z-index:2;position:relative}
+    .thanks-title{font-size:22px;font-weight:600;color:var(--ink);margin-bottom:12px}
+    .thanks-msg{font-size:15px;color:var(--brown);line-height:1.6;margin-bottom:24px;max-width:280px}
+    .countdown{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(201,168,76,.12);border-radius:12px;font-size:14px;color:var(--brown)}
+    .countdown strong{font-size:20px;color:var(--gold)}
   </style>
 </head>
 <body>
@@ -34,17 +95,94 @@
       <div class="moon" id="moon"></div>
       <div class="ground"></div>
       <div class="dust" id="dust"></div>
+      <canvas id="fw-canvas"></canvas>
       <div class="horse-track" id="horse-track"></div>
       <p class="horses-caption" id="horses-caption"><strong>Tuổi Ngựa</strong>Một đàn ngựa đang mang thư tới…</p>
       <p class="sound-hint" id="sound-hint">Chạm màn hình để bật âm thanh</p>
     </section>
-    <section class="scene" id="scene-envelope"></section>
-    <section class="scene" id="scene-intro"></section>
-    <section class="scene" id="scene-letter"></section>
-    <section class="scene" id="scene-info"></section>
-    <section class="scene" id="scene-wishlist"></section>
-    <section class="scene" id="scene-confirm"></section>
-    <section class="scene" id="scene-thanks"></section>
+    <section class="scene" id="scene-envelope">
+      <div class="paper-bg"></div>
+      <div class="envelope-wrap" id="envelope-wrap">
+        <div class="envelope-body"><div class="envelope-letter-peek" id="envelope-letter-peek"></div></div>
+        <div class="envelope-flap" id="envelope-flap"></div>
+        <div class="envelope-seal" id="envelope-seal"></div>
+      </div>
+      <p class="envelope-hint">Chạm phong bì để mở</p>
+      <button class="btn btn-primary" id="btn-open-envelope" type="button" style="margin-top:24px">Mở thư</button>
+    </section>
+    <section class="scene" id="scene-intro">
+      <div class="paper-bg"></div>
+      <h2 class="scene-title">Trước khi đọc thư</h2>
+      <p class="scene-subtitle">Cho mình biết đang trò chuyện với ai nhé</p>
+      <div class="form-group">
+        <label class="form-label" for="select-role">Danh xưng</label>
+        <select class="form-select" id="select-role">
+          <option value="">Chọn…</option>
+          <option value="Anh">Anh</option>
+          <option value="Chị">Chị</option>
+          <option value="Bạn">Bạn</option>
+          <option value="Em">Em</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="input-name">Tên của bạn</label>
+        <input class="form-input" id="input-name" type="text" placeholder="Nhập tên…" autocomplete="name" />
+      </div>
+      <div class="form-actions"><button class="btn btn-primary btn-large" id="btn-open-letter" type="button">Mở lá thư</button></div>
+    </section>
+    <section class="scene" id="scene-letter">
+      <div class="paper-bg"></div>
+      <div class="letter-sheet" id="letter-sheet">
+        <div class="letter-greeting" id="letter-greeting"></div>
+        <div class="letter-body" id="letter-body"></div>
+        <div class="letter-closing">
+          <div class="letter-sign">✦ Việt Nam</div>
+          <div class="letter-sign-sub">Thân mến</div>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="btn-to-info" type="button">Lật trang →</button>
+    </section>
+    <section class="scene" id="scene-info">
+      <div class="paper-bg"></div>
+      <div class="info-card" id="info-card">
+        <div class="info-row"><div class="info-icon">🎂</div><div><div class="info-label">Sự kiện</div><div class="info-value">Tiệc sinh nhật</div></div></div>
+        <div class="info-row"><div class="info-icon">📅</div><div><div class="info-label">Ngày</div><div class="info-value" id="info-date">03/10/2026 · Thứ Bảy</div></div></div>
+        <div class="info-row"><div class="info-icon">🕕</div><div><div class="info-label">Giờ</div><div class="info-value">Từ 18:00</div></div></div>
+        <div class="info-row"><div class="info-icon">📍</div><div><div class="info-label">Địa điểm</div><div class="info-value">Tà Vẹt Coffee & Pub</div><div class="info-label" style="margin-top:4px">11 Võ Thị Sáu, Huế</div></div></div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px">
+          <button class="btn btn-primary" id="btn-maps" type="button">Xem địa điểm</button>
+          <button class="btn btn-ghost" id="btn-to-wishlist" type="button">Tiếp tục →</button>
+        </div>
+      </div>
+    </section>
+    <section class="scene" id="scene-wishlist">
+      <div class="paper-bg"></div>
+      <h2 class="scene-title">Gợi ý quà & lời mời</h2>
+      <p class="scene-subtitle">Chọn những gì bạn muốn mang theo — hoặc chỉ cần mang chính mình</p>
+      <div class="wish-section"><h3>Quà thông thường</h3><div id="wishlist-normal"></div></div>
+      <div class="wish-section"><h3>Đặc biệt nhất</h3><div id="wishlist-special"></div></div>
+      <div class="form-actions"><button class="btn btn-primary btn-large" id="btn-to-confirm" type="button">Tiếp tục →</button></div>
+    </section>
+    <section class="scene" id="scene-confirm">
+      <div class="paper-bg"></div>
+      <h2 class="scene-title">Xác nhận tham gia</h2>
+      <p class="scene-subtitle">Kiểm tra lại thông tin nhé</p>
+      <div class="summary-card">
+        <div class="summary-row"><span class="summary-key">Tên</span><span class="summary-val" id="sum-name">—</span></div>
+        <div class="summary-row"><span class="summary-key">Danh xưng</span><span class="summary-val" id="sum-role">—</span></div>
+        <div class="summary-row"><span class="summary-key">Gợi ý</span><span class="summary-val" id="sum-wishlist">—</span></div>
+      </div>
+      <button class="btn btn-primary btn-large" id="btn-rsvp" type="button">Giữ chỗ cho tôi</button>
+      <canvas id="confetti-canvas"></canvas>
+    </section>
+    <section class="scene" id="scene-thanks">
+      <div class="paper-bg"></div>
+      <div class="thanks-content">
+        <h2 class="thanks-title" id="thanks-title">Cảm ơn bạn</h2>
+        <p class="thanks-msg" id="thanks-msg">Một chỗ ngồi đã được giữ riêng.</p>
+        <div class="countdown">Còn <strong id="countdown-days">—</strong> ngày</div>
+      </div>
+    </section>
   </div>
   <script src="horse.js"></script>
   <script src="app.js"></script>
