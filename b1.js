@@ -1,1 +1,1 @@
-window.__B1__='TEST';
+PLACEHOLDER_B1
