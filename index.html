@@ -1,1 +1,52 @@
-<!DOCTYPE html><html><body>test</body></html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a1612" />
+  <title>Thiệp Mời — Việt Nam</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;width:100%;overflow:hidden;font-family:system-ui,sans-serif;background:#1a1612}
+    #app{position:relative;width:100%;height:100%;max-width:430px;margin:0 auto;background:#f5f0e6;overflow:hidden}
+    .scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;z-index:1;overflow:hidden}
+    .scene.active{opacity:1;pointer-events:auto;z-index:10}
+    #scene-horses{background:linear-gradient(180deg,#1a2a1a,#2a3a2a 40%,#3d4a30 100%)}
+    .sky-stars{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+    .sky-stars span{position:absolute;width:2px;height:2px;background:#f5e6c8;border-radius:50%;opacity:.5}
+    .moon{position:absolute;top:12%;right:14%;width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f5e8c8,#d4b96a);z-index:1}
+    .ground{position:absolute;bottom:0;left:0;right:0;height:32%;background:linear-gradient(180deg,#4a6a40,#2a3a28);z-index:2}
+    .horse-track{position:absolute;bottom:8%;left:0;right:0;height:200px;overflow:visible;pointer-events:none;z-index:3}
+    .horse{position:absolute;bottom:0;will-change:transform;transform-origin:center bottom;image-rendering:pixelated;image-rendering:crisp-edges}
+    .horse.far{opacity:.65}.horse.mid{opacity:.9}.horse.near{opacity:1}
+    .dust{position:absolute;bottom:18%;left:0;right:0;height:50px;pointer-events:none;z-index:2;overflow:hidden}
+    .dust i{position:absolute;bottom:0;width:8px;height:8px;border-radius:50%;background:rgba(200,180,140,.5);opacity:0}
+    .horses-caption{position:relative;z-index:5;text-align:center;color:rgba(245,230,200,.92);font-size:15px;margin-top:auto;margin-bottom:52px;opacity:0}
+    .horses-caption strong{display:block;font-size:19px;color:#d4b96a;margin-bottom:6px}
+    .sound-hint{position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:12px;color:rgba(245,230,200,.6);opacity:0;z-index:6}
+  </style>
+</head>
+<body>
+  <div id="app">
+    <section class="scene active" id="scene-horses">
+      <div class="sky-stars" id="sky-stars"></div>
+      <div class="moon" id="moon"></div>
+      <div class="ground"></div>
+      <div class="dust" id="dust"></div>
+      <div class="horse-track" id="horse-track"></div>
+      <p class="horses-caption" id="horses-caption"><strong>Tuổi Ngựa</strong>Một đàn ngựa đang mang thư tới…</p>
+      <p class="sound-hint" id="sound-hint">Chạm màn hình để bật âm thanh</p>
+    </section>
+    <section class="scene" id="scene-envelope"></section>
+    <section class="scene" id="scene-intro"></section>
+    <section class="scene" id="scene-letter"></section>
+    <section class="scene" id="scene-info"></section>
+    <section class="scene" id="scene-wishlist"></section>
+    <section class="scene" id="scene-confirm"></section>
+    <section class="scene" id="scene-thanks"></section>
+  </div>
+  <script src="horse.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
