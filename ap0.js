@@ -1,1 +1,1 @@
-window.__A0__="placeholder";
+window.__A0__="PLACEHOLDER_AP0";
