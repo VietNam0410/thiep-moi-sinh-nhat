@@ -7,12 +7,13 @@
 <title>Thiệp Mời — Việt Nam</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.cdnfonts.com/css/made-bon-voyage" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',system-ui,sans-serif;background:#1a1612;color:#2c2118;-webkit-font-smoothing:antialiased;touch-action:manipulation}
-:root{--paper:#f5f0e6;--cream:#faf6f0;--ivory:#fffdf8;--brown:#5c4033;--brown-light:#8b6f5c;--gold:#c9a84c;--gold-soft:#d4b96a;--ink:#2c2118;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);--font-ui:'Be Vietnam Pro',system-ui,sans-serif;--font-script:'Great Vibes',cursive}
+:root{--paper:#f5f0e6;--cream:#faf6f0;--ivory:#fffdf8;--brown:#5c4033;--brown-light:#8b6f5c;--gold:#c9a84c;--gold-soft:#d4b96a;--ink:#2c2118;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);--font-ui:'Be Vietnam Pro',system-ui,sans-serif;--font-script:'MADE Bon Voyage','Bon Voyage','Great Vibes',cursive}
 #app{position:relative;width:100%;height:100%;max-width:430px;margin:0 auto;background:var(--paper);overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.5)}
 @media(min-width:431px){body{display:flex;align-items:center;justify-content:center;background:#0f0d0b}#app{height:min(100vh,860px);border-radius:24px;border:1px solid rgba(201,168,76,.2)}}
 .scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(20px + var(--safe-top)) 20px calc(20px + var(--safe-bottom));opacity:0;pointer-events:none;z-index:1;overflow:hidden}
@@ -46,6 +47,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',sy
 .btn-primary{background:linear-gradient(135deg,var(--gold),#b8943a);color:#fff;box-shadow:0 6px 20px rgba(201,168,76,.35)}
 .btn-ghost{background:rgba(255,255,255,.5);color:var(--brown);border:1px solid rgba(139,111,92,.25)}
 .btn-large{width:100%;max-width:280px;padding:16px 32px;font-size:16px}
+.btn-nav-corner{position:absolute;top:calc(12px + var(--safe-top));right:14px;z-index:20;padding:10px 16px;min-height:40px;font-size:13px;border-radius:20px;box-shadow:0 4px 14px rgba(201,168,76,.3)}
 .scene-title{font-size:20px;font-weight:600;color:var(--ink);text-align:center;margin-bottom:8px;line-height:1.35;max-width:300px;z-index:2;position:relative}
 .scene-subtitle{font-size:13px;color:var(--brown-light);text-align:center;margin-bottom:28px;line-height:1.6;max-width:280px;z-index:2;position:relative}
 .form-group{width:100%;max-width:320px;margin-bottom:18px;z-index:2;position:relative}
@@ -95,6 +97,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',sy
 .countdown-value{font-size:40px;font-weight:600;color:var(--ink);line-height:1.1}
 .countdown-unit{font-size:13px;color:var(--brown-light);margin-top:6px}
 #confetti-canvas{position:absolute;inset:0;pointer-events:none;z-index:100}
+.sheet-link{display:inline-block;margin-top:16px;font-size:13px;color:var(--gold);text-decoration:underline;z-index:2;position:relative}
 </style>
 </head>
 <body>
@@ -142,7 +145,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',sy
 <div class="letter-closing"><p class="sign-label">Thân mến,</p>
 <div class="letter-signature"><span class="star">✦</span><span>Việt Nam</span></div></div>
 </div>
-<button class="btn btn-primary" id="btn-to-info" type="button">Lật trang →</button>
+<button class="btn btn-primary btn-nav-corner" id="btn-to-info" type="button">Lật trang →</button>
 </section>
 <section class="scene" id="scene-info">
 <div class="paper-bg"></div>
@@ -156,9 +159,9 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',sy
 <div class="info-row"><span>📍</span><span>Tà Vẹt Coffee & Pub</span></div>
 <div class="info-row" style="font-size:12px;color:var(--brown-light);margin-top:4px">11 Võ Thị Sáu, Huế</div>
 </div>
+<button class="btn btn-primary btn-nav-corner" id="btn-to-wishlist" type="button">Tiếp tục →</button>
 <div class="form-actions">
 <button class="btn btn-primary" id="btn-maps" type="button">Xem địa điểm</button>
-<button class="btn btn-ghost" id="btn-to-wishlist" type="button">Tiếp tục →</button>
 </div>
 </section>
 <section class="scene" id="scene-wishlist">
@@ -170,7 +173,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',sy
 <div class="wishlist" id="wishlist-normal"></div></div>
 <div class="wish-section"><div class="wish-section-title">Wishlist đặc biệt</div>
 <div class="wishlist" id="wishlist-special"></div></div>
-<div class="form-actions"><button class="btn btn-primary btn-large" id="btn-to-confirm" type="button">Tiếp tục →</button></div>
+<button class="btn btn-primary btn-nav-corner" id="btn-to-confirm" type="button">Tiếp tục →</button>
 </section>
 <section class="scene" id="scene-confirm">
 <div class="paper-bg"></div>
@@ -181,7 +184,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',sy
 <div class="summary-row"><span class="summary-label">Xưng hô</span><span class="summary-value" id="sum-role">—</span></div>
 <div class="summary-row"><span class="summary-label">Quà / ghi chú</span><span class="summary-value" id="sum-wishlist">—</span></div>
 </div>
-<button class="btn btn-primary btn-large" id="btn-rsvp" type="button">Giữ chỗ cho tôi</button>
+<button class="btn btn-primary btn-large" id="btn-rsvp" type="button">Đồng ý tham gia — Giữ chỗ cho tôi</button>
 <canvas id="confetti-canvas"></canvas>
 </section>
 <section class="scene" id="scene-thanks">
@@ -189,7 +192,8 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',sy
 <div class="thanks-content">
 <div class="thanks-emoji">✨</div>
 <h2 class="thanks-title" id="thanks-title">Cảm ơn bạn</h2>
-<p class="thanks-msg" id="thanks-msg">Một chỗ ngồi đã được giữ riêng.</p>
+<p class="thanks-msg" id="thanks-msg">Sự có mặt của bạn là niềm hạnh phúc của gia đình chúng tui.</p>
+<a class="sheet-link" id="sheet-link" href="#" target="_blank" rel="noopener" style="display:none">Xem danh sách đăng ký (Google Sheet)</a>
 <div class="countdown">
 <div class="countdown-label">Còn</div>
 <div class="countdown-value" id="countdown-days">—</div>
