@@ -25,24 +25,22 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',sy
 @keyframes twinkle{0%,100%{opacity:.2}50%{opacity:.95}}
 .moon{position:absolute;top:12%;right:14%;width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f5e8c8,#d4b96a 60%,#a89050);box-shadow:0 0 40px rgba(212,185,106,.35);opacity:.85;z-index:1}
 .ground{position:absolute;bottom:0;left:0;right:0;height:32%;background:linear-gradient(180deg,#3a2a1c,#2a1c12 40%,#1a120c);z-index:2}
-.horse-track{position:absolute;bottom:8%;left:0;right:0;height:220px;overflow:visible;pointer-events:none;z-index:3}
-.horse{position:absolute;bottom:0;will-change:transform;transform-origin:center bottom;image-rendering:pixelated;image-rendering:crisp-edges;backface-visibility:hidden}
-.horse.far{opacity:.55}.horse.mid{opacity:.85}.horse.near{opacity:1}
-#fw-canvas{position:absolute;inset:0;pointer-events:none;z-index:8}
-.dust{position:absolute;bottom:18%;left:0;right:0;height:50px;pointer-events:none;z-index:2;overflow:hidden}
-.dust i{position:absolute;bottom:0;width:7px;height:7px;border-radius:50%;background:rgba(200,180,140,.5);opacity:0}
-.horses-caption{position:relative;z-index:5;text-align:center;color:rgba(245,230,200,.9);font-size:15px;letter-spacing:.06em;margin-top:auto;margin-bottom:48px;opacity:0}
+.horse-track{position:absolute;bottom:20%;left:0;right:0;height:100px;overflow:visible;pointer-events:none;z-index:3}
+.dust{position:absolute;bottom:22%;left:0;right:0;height:40px;pointer-events:none;z-index:2;overflow:hidden}
+.dust i{position:absolute;bottom:0;width:6px;height:6px;border-radius:50%;background:rgba(180,150,110,.5);opacity:0}
+.horses-caption{position:relative;z-index:5;text-align:center;color:rgba(245,230,200,.88);font-size:15px;letter-spacing:.06em;margin-top:auto;margin-bottom:52px;opacity:0}
 .horses-caption strong{display:block;font-size:19px;color:var(--gold-soft);font-weight:500;margin-bottom:6px}
 .sound-hint{position:absolute;bottom:calc(14px + var(--safe-bottom));left:50%;transform:translateX(-50%);z-index:20;font-size:11px;color:rgba(245,230,200,.5);opacity:0;pointer-events:none}
-.envelope-wrap{position:relative;width:280px;height:180px;perspective:900px;z-index:5;cursor:pointer}
+#fw-canvas{position:absolute;inset:0;pointer-events:none;z-index:4}
+.envelope-wrap{position:relative;width:280px;height:180px;perspective:900px;z-index:5}
 .envelope-body{position:absolute;inset:0;background:linear-gradient(180deg,#e8dcc8,#d9cbb0);border-radius:4px 4px 8px 8px;box-shadow:0 20px 40px rgba(0,0,0,.35)}
 .envelope-flap{position:absolute;top:0;left:0;right:0;height:90px;background:linear-gradient(180deg,#f0e6d4,#e0d2ba);clip-path:polygon(0 0,50% 70%,100% 0);transform-origin:top center;z-index:5}
 .envelope-flap::after{content:'';position:absolute;top:28px;left:50%;transform:translateX(-50%);width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,var(--gold) 40%,#a88b3a)}
 .envelope-letter-peek{position:absolute;left:12px;right:12px;top:22px;height:130px;background:var(--ivory);border-radius:2px;z-index:2}
 .envelope-seal{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);width:46px;height:46px;z-index:6;border-radius:50%;background:radial-gradient(circle at 35% 35%,#e8c96a,var(--gold) 50%,#a07a28);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
-.envelope-hint{margin-top:44px;text-align:center;z-index:5;position:relative;color:rgba(92,64,51,.7);font-size:13px}
-.envelope-hint strong{display:block;color:var(--ink);font-size:17px;font-weight:500;margin-bottom:6px}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;min-height:48px;border:none;border-radius:50px;font-family:var(--font-ui);font-size:15px;font-weight:600;letter-spacing:.04em;cursor:pointer;z-index:5;touch-action:manipulation}
+.envelope-hint{margin-top:44px;text-align:center;z-index:5;position:relative;color:rgba(245,240,230,.7);font-size:13px}
+.envelope-hint strong{display:block;color:var(--gold-soft);font-size:17px;font-weight:500;margin-bottom:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;min-height:48px;border:none;border-radius:50px;font-family:var(--font-ui);font-size:15px;font-weight:600;letter-spacing:.04em;cursor:pointer;z-index:5}
 .btn:active{transform:scale(.97)}
 .btn-primary{background:linear-gradient(135deg,var(--gold),#b8943a);color:#fff;box-shadow:0 6px 20px rgba(201,168,76,.35)}
 .btn-ghost{background:rgba(255,255,255,.5);color:var(--brown);border:1px solid rgba(139,111,92,.25)}
@@ -92,28 +90,28 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',sy
 .thanks-emoji{font-size:40px;margin-bottom:12px}
 .thanks-title{font-size:22px;font-weight:600;color:var(--ink);margin-bottom:10px;line-height:1.3}
 .thanks-msg{font-size:14px;color:var(--brown);line-height:1.65;margin-bottom:24px}
+.sheet-link{display:inline-block;margin-top:16px;font-size:13px;color:var(--gold);text-decoration:underline;z-index:2;position:relative}
+.sheet-link:hover{color:var(--gold-soft)}
 .countdown{background:var(--ivory);border-radius:16px;padding:20px 24px;box-shadow:0 6px 24px rgba(60,40,20,.1)}
 .countdown-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px}
 .countdown-value{font-size:40px;font-weight:600;color:var(--ink);line-height:1.1}
 .countdown-unit{font-size:13px;color:var(--brown-light);margin-top:6px}
 #confetti-canvas{position:absolute;inset:0;pointer-events:none;z-index:100}
-.sheet-link{display:inline-block;margin-top:16px;font-size:13px;color:var(--gold);text-decoration:underline;z-index:2;position:relative}
 </style>
 </head>
 <body>
 <div id="app">
 <section class="scene active" id="scene-horses">
+<canvas id="fw-canvas"></canvas>
 <div class="sky-stars" id="sky-stars"></div>
 <div class="moon" id="moon"></div>
 <div class="ground"></div>
 <div class="dust" id="dust"></div>
-<canvas id="fw-canvas"></canvas>
 <div class="horse-track" id="horse-track"></div>
 <p class="horses-caption" id="horses-caption"><strong>Tuổi Ngựa</strong>Một đàn ngựa đang mang thư tới…</p>
 <p class="sound-hint" id="sound-hint">Chạm màn hình để bật âm thanh</p>
 </section>
 <section class="scene" id="scene-envelope">
-<div class="paper-bg"></div>
 <div class="envelope-wrap" id="envelope-wrap">
 <div class="envelope-body"><div class="envelope-letter-peek" id="envelope-letter-peek"></div></div>
 <div class="envelope-flap" id="envelope-flap"></div>
@@ -159,9 +157,9 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',sy
 <div class="info-row"><span>📍</span><span>Tà Vẹt Coffee & Pub</span></div>
 <div class="info-row" style="font-size:12px;color:var(--brown-light);margin-top:4px">11 Võ Thị Sáu, Huế</div>
 </div>
-<button class="btn btn-primary btn-nav-corner" id="btn-to-wishlist" type="button">Tiếp tục →</button>
 <div class="form-actions">
 <button class="btn btn-primary" id="btn-maps" type="button">Xem địa điểm</button>
+<button class="btn btn-ghost btn-nav-corner" id="btn-to-wishlist" type="button">Tiếp tục →</button>
 </div>
 </section>
 <section class="scene" id="scene-wishlist">
@@ -173,7 +171,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',sy
 <div class="wishlist" id="wishlist-normal"></div></div>
 <div class="wish-section"><div class="wish-section-title">Wishlist đặc biệt</div>
 <div class="wishlist" id="wishlist-special"></div></div>
-<button class="btn btn-primary btn-nav-corner" id="btn-to-confirm" type="button">Tiếp tục →</button>
+<div class="form-actions"><button class="btn btn-primary btn-large" id="btn-to-confirm" type="button">Tiếp tục →</button></div>
 </section>
 <section class="scene" id="scene-confirm">
 <div class="paper-bg"></div>
@@ -201,7 +199,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',sy
 </div></div>
 </section>
 </div>
-<script src="horse.js"></script>
-<script src="app.js"></script>
+<script src="horse.js?v=2"></script>
+<script src="app.js?v=2"></script>
 </body>
 </html>
