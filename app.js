@@ -319,7 +319,7 @@ function prepareThanks() {
   var polite = state.role === 'Anh' || state.role === 'Chị' ? state.role.toLowerCase() : 'bạn';
   $('#thanks-msg').textContent = 'Một chỗ ngồi đã được giữ riêng cho ' + polite + ' tại Tà Vẹt.';
   var target = new Date(CONFIG.eventDateISO + 'T18:00:00');
-  $('#countdown-days').textContent = Math.max(0, Math.ceil((target - new Date()) / 86400000));
+  $('#countdown-days').textContent = Math.max(0, Math.ceil((target - new Date() - 1) / 86400000));
 }
 
 function init() {
