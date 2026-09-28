@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#1a1612"/>
+<title>Thiep Moi — Viet Nam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+@font-face{font-family:'MTD Yessy';src:local('MTD Yessy'),url('fonts/MTDYessy.woff2') format('woff2'),url('fonts/MTDYessy.ttf') format('truetype');font-display:swap}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',system-ui,sans-serif;background:#1a1612;color:#2c2118;-webkit-font-smoothing:antialiased;touch-action:manipulation}
+:root{--paper:#f5f0e6;--cream:#faf6f0;--ivory:#fffdf8;--brown:#5c4033;--brown-light:#8b6f5c;--gold:#c9a84c;--gold-soft:#d4b96a;--ink:#2c2118;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);--font-ui:'Be Vietnam Pro',system-ui,sans-serif;--font-script:'MTD Yessy','Great Vibes',cursive}
+#app{position:relative;width:100%;height:100%;max-width:430px;margin:0 auto;background:var(--paper);overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.5)}
+@media(min-width:431px){body{display:flex;align-items:center;justify-content:center;background:#0f0d0b}#app{height:min(100vh,860px);border-radius:24px;border:1px solid rgba(201,168,76,.2)}}
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(20px + var(--safe-top)) 20px calc(20px + var(--safe-bottom));opacity:0;pointer-events:none;z-index:1;overflow:hidden}
+.scene.active{opacity:1;pointer-events:auto;z-index:10}
+.paper-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 20%,rgba(201,168,76,.06),transparent 50%),linear-gradient(180deg,var(--cream),var(--paper) 55%,#ebe4d6)}
+#scene-horses{background:linear-gradient(180deg,#120e0a,#1f1610 35%,#2e2016 70%,#3a2818)}
+.sky-stars{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.sky-stars span{position:absolute;width:2px;height:2px;background:#f5e6c8;border-radius:50%;opacity:.5;animation:twinkle 2.5s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.2}50%{opacity:.95}}
+.moon{position:absolute;top:12%;right:14%;width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f5e8c8,#d4b96a 60%,#a89050);box-shadow:0 0 40px rgba(212,185,106,.35);opacity:.85;z-index:1}
+.ground{position:absolute;bottom:0;left:0;right:0;height:32%;background:linear-gradient(180deg,#3a2a1c,#2a1c12 40%,#1a120c);z-index:2}
+.horse-track{position:absolute;bottom:20%;left:0;right:0;height:100px;overflow:visible;pointer-events:none;z-index:3}
+.horse{position:absolute;bottom:0;width:88px;height:64px;will-change:transform;transform-origin:center bottom}
+.horse svg{width:100%;height:100%;display:block;overflow:visible}
+.horse.far{opacity:.45;filter:blur(.5px)}
+.horse.mid{opacity:.75}
+.horse.near{opacity:1;filter:drop-shadow(0 6px 8px rgba(0,0,0,.45))}
+.dust{position:absolute;bottom:22%;left:0;right:0;height:40px;pointer-events:none;z-index:2;overflow:hidden}
+.dust i{position:absolute;bottom:0;width:6px;height:6px;border-radius:50%;background:rgba(180,150,110,.5);opacity:0}
+.horses-caption{position:relative;z-index:5;text-align:center;color:rgba(245,230,200,.88);font-size:15px;letter-spacing:.06em;margin-top:auto;margin-bottom:52px;opacity:0}
+.horses-caption strong{display:block;font-size:19px;color:var(--gold-soft);font-weight:500;margin-bottom:6px}
+.envelope-wrap{position:relative;width:280px;height:180px;perspective:900px;z-index:5}
+.envelope-body{position:absolute;inset:0;background:linear-gradient(180deg,#e8dcc8,#d9cbb0);border-radius:4px 4px 8px 8px;box-shadow:0 20px 40px rgba(0,0,0,.35)}
+.envelope-flap{position:absolute;top:0;left:0;right:0;height:90px;background:linear-gradient(180deg,#f0e6d4,#e0d2ba);clip-path:polygon(0 0,50% 70%,100% 0);transform-origin:top center;z-index:5}
+.envelope-flap::after{content:'';position:absolute;top:28px;left:50%;transform:translateX(-50%);width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,var(--gold) 40%,#a88b3a)}
+.envelope-letter-peek{position:absolute;left:12px;right:12px;top:22px;height:130px;background:var(--ivory);border-radius:2px;z-index:2}
+.envelope-seal{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);width:46px;height:46px;z-index:6;border-radius:50%;background:radial-gradient(circle at 35% 35%,#e8c96a,var(--gold) 50%,#a07a28);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+.envelope-hint{margin-top:44px;text-align:center;z-index:5;position:relative;color:rgba(245,240,230,.7);font-size:13px}
+.envelope-hint strong{display:block;color:var(--gold-soft);font-size:17px;font-weight:500;margin-bottom:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;min-height:48px;border:none;border-radius:50px;font-family:var(--font-ui);font-size:15px;font-weight:600;letter-spacing:.04em;cursor:pointer;z-index:5}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:linear-gradient(135deg,var(--gold),#b8943a);color:#fff;box-shadow:0 6px 20px rgba(201,168,76,.35)}
+.btn-ghost{background:rgba(255,255,255,.5);color:var(--brown);border:1px solid rgba(139,111,92,.25)}
+.btn-large{width:100%;max-width:280px;padding:16px 32px;font-size:16px}
+.scene-title{font-size:20px;font-weight:600;color:var(--ink);text-align:center;margin-bottom:8px;line-height:1.35;max-width:300px;z-index:2;position:relative}
+.scene-subtitle{font-size:13px;color:var(--brown-light);text-align:center;margin-bottom:28px;line-height:1.6;max-width:280px;z-index:2;position:relative}
+.form-group{width:100%;max-width:320px;margin-bottom:18px;z-index:2;position:relative}
+.form-label{display:block;font-size:13px;color:var(--brown);margin-bottom:8px}
+.form-input,.form-select{width:100%;padding:14px 16px;min-height:48px;border:1.5px solid rgba(139,111,92,.28);border-radius:12px;background:var(--ivory);font-family:var(--font-ui);font-size:16px;color:var(--ink);outline:none;-webkit-appearance:none;appearance:none}
+.form-input:focus,.form-select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.15)}
+.form-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238b6f5c' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+.form-actions{margin-top:28px;width:100%;max-width:320px;display:flex;flex-direction:column;gap:12px;align-items:center;z-index:2}
+#scene-letter{justify-content:flex-start;padding-top:calc(16px + var(--safe-top));padding-bottom:calc(28px + var(--safe-bottom));overflow-y:auto;-webkit-overflow-scrolling:touch}
+.letter-sheet{width:100%;max-width:340px;background:var(--ivory);border-radius:6px;padding:32px 26px 28px;position:relative;z-index:2;margin-bottom:20px;box-shadow:0 8px 30px rgba(60,40,20,.12)}
+.letter-greeting{font-family:var(--font-script);font-size:26px;color:var(--ink);margin-bottom:18px;line-height:1.3}
+.letter-body{font-family:var(--font-script);font-size:20px;line-height:1.55;color:var(--brown);white-space:pre-line}
+.letter-body .line{opacity:0;display:block;min-height:1.1em}
+.letter-body .line.is-break{min-height:.55em}
+.letter-closing{margin-top:28px;text-align:right}
+.letter-closing .sign-label{font-family:var(--font-ui);font-size:13px;color:var(--brown-light);margin-bottom:4px}
+.letter-signature{font-family:var(--font-script);font-size:32px;color:var(--ink);line-height:1.2;display:flex;align-items:center;justify-content:flex-end;gap:6px}
+.letter-signature .star{display:inline-block;color:var(--gold);font-size:18px;transform:translateY(-4px)}
+.info-card{width:100%;max-width:320px;background:var(--ivory);border-radius:16px;padding:28px 24px;text-align:center;z-index:2;position:relative;box-shadow:0 10px 36px rgba(60,40,20,.12)}
+.info-icon{font-size:36px;margin-bottom:12px}
+.info-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px}
+.info-date{font-size:26px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.info-dow{font-size:14px;color:var(--brown-light);margin-bottom:16px}
+.info-divider{width:36px;height:1px;background:var(--gold-soft);margin:0 auto 16px;opacity:.6}
+.info-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;font-size:15px;color:var(--brown)}
+.wish-section{width:100%;max-width:320px;z-index:2;position:relative;margin-bottom:20px}
+.wish-section-title{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;text-align:center}
+.wish-section-note{font-size:12px;color:var(--brown-light);text-align:center;margin-bottom:12px;line-height:1.45}
+.wishlist{display:flex;flex-direction:column;gap:10px}
+.wish-item{display:flex;align-items:center;gap:12px;padding:13px 16px;min-height:48px;background:var(--ivory);border:1.5px solid rgba(139,111,92,.2);border-radius:12px;cursor:pointer;user-select:none}
+.wish-item.selected{border-color:var(--gold);background:rgba(201,168,76,.08)}
+.wish-item.special{border-color:rgba(201,168,76,.45);background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(255,253,248,.9))}
+.wish-check{width:22px;height:22px;border:2px solid var(--brown-light);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent}
+.wish-item.selected .wish-check{background:var(--gold);border-color:var(--gold);color:#fff}
+.wish-label{font-size:14px;color:var(--ink);line-height:1.35}
+.summary-card{width:100%;max-width:320px;background:var(--ivory);border-radius:16px;padding:20px;margin-bottom:24px;z-index:2;position:relative;box-shadow:0 8px 28px rgba(60,40,20,.1)}
+.summary-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid rgba(139,111,92,.12);font-size:13px}
+.summary-row:last-child{border-bottom:none}
+.summary-label{color:var(--brown-light)}
+.summary-value{color:var(--ink);font-weight:500;text-align:right;max-width:62%}
+.thanks-content{text-align:center;max-width:300px;z-index:2;position:relative}
+.thanks-emoji{font-size:40px;margin-bottom:12px}
+.thanks-title{font-size:22px;font-weight:600;color:var(--ink);margin-bottom:10px;line-height:1.3}
+.thanks-msg{font-size:14px;color:var(--brown);line-height:1.65;margin-bottom:24px}
+.countdown{background:var(--ivory);border-radius:16px;padding:20px 24px;box-shadow:0 6px 24px rgba(60,40,20,.1)}
+.countdown-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px}
+.countdown-value{font-size:40px;font-weight:600;color:var(--ink);line-height:1.1}
+.countdown-unit{font-size:13px;color:var(--brown-light);margin-top:6px}
+#confetti-canvas{position:absolute;inset:0;pointer-events:none;z-index:100}
+</style>
+</head>
+<body>
+<div id="app">
+<section class="scene active" id="scene-horses">
+<div class="sky-stars" id="sky-stars"></div>
+<div class="moon" id="moon"></div>
+<div class="ground"></div>
+<div class="dust" id="dust"></div>
+<div class="horse-track" id="horse-track"></div>
+<p class="horses-caption" id="horses-caption"><strong>Tuoi Ngua</strong>Mot dan ngua dang mang thu toi…</p>
+</section>
+<section class="scene" id="scene-envelope">
+<div class="envelope-wrap" id="envelope-wrap">
+<div class="envelope-body"><div class="envelope-letter-peek" id="envelope-letter-peek"></div></div>
+<div class="envelope-flap" id="envelope-flap"></div>
+<div class="envelope-seal" id="envelope-seal">✦</div>
+</div>
+<p class="envelope-hint"><strong>Ban vua nhan duoc mot la thu</strong>Cham de mo</p>
+<button class="btn btn-primary" id="btn-open-envelope" type="button" style="margin-top:24px">Mo thu</button>
+</section>
+<section class="scene" id="scene-intro">
+<div class="paper-bg"></div>
+<h2 class="scene-title">Truoc khi doc thu</h2>
+<p class="scene-subtitle">Cho minh biet dang tro chuyen voi ai nhe</p>
+<div class="form-group"><label class="form-label" for="input-name">Ten cua ban</label>
+<input class="form-input" type="text" id="input-name" placeholder="Nhap ten..." maxlength="40" autocomplete="name"/></div>
+<div class="form-group"><label class="form-label" for="select-role">Ban muon minh xung ho voi ban nhu the nao?</label>
+<select class="form-select" id="select-role">
+<option value="">Chon cach xung ho</option>
+<option value="Anh">Anh</option><option value="Chi">Chi</option><option value="Em">Em</option>
+<option value="Ban">Ban</option><option value="Dong nghiep">Dong nghiep</option>
+<option value="Nguoi yeu">Nguoi yeu</option><option value="Ban than">Ban than</option>
+</select></div>
+<div class="form-actions"><button class="btn btn-primary btn-large" id="btn-open-letter" type="button">Mo la thu</button></div>
+</section>
+<section class="scene" id="scene-letter">
+<div class="paper-bg"></div>
+<div class="letter-sheet" id="letter-sheet">
+<p class="letter-greeting" id="letter-greeting"></p>
+<div class="letter-body" id="letter-body"></div>
+<div class="letter-closing"><p class="sign-label">Than men,</p>
+<div class="letter-signature"><span class="star">✦</span><span>Viet Nam</span></div></div>
+</div>
+<button class="btn btn-primary" id="btn-to-info" type="button">Lat trang →</button>
+</section>
+<section class="scene" id="scene-info">
+<div class="paper-bg"></div>
+<div class="info-card" id="info-card">
+<div class="info-icon">🎂</div>
+<div class="info-label">Tiec sinh nhat</div>
+<div class="info-date">03/10/2026</div>
+<div class="info-dow">Thu Bay</div>
+<div class="info-divider"></div>
+<div class="info-row"><span>🕐</span><span>Tu 18:00</span></div>
+<div class="info-row"><span>📍</span><span>Ta Vet Coffee & Pub</span></div>
+<div class="info-row" style="font-size:12px;color:var(--brown-light);margin-top:4px">11 Vo Thi Sau, Hue</div>
+</div>
+<div class="form-actions">
+<button class="btn btn-primary" id="btn-maps" type="button">Xem dia diem</button>
+<button class="btn btn-ghost" id="btn-to-wishlist" type="button">Tiep tuc →</button>
+</div>
+</section>
+<section class="scene" id="scene-wishlist">
+<div class="paper-bg"></div>
+<h2 class="scene-title">Goi y qua & loi moi</h2>
+<p class="scene-subtitle">Chon nhung gi ban muon mang theo — hoac chi can mang chinh minh</p>
+<div class="wish-section"><div class="wish-section-title">Wishlist thuong</div>
+<p class="wish-section-note">Danh sach goi y — ban co the chon hoac bo qua</p>
+<div class="wishlist" id="wishlist-normal"></div></div>
+<div class="wish-section"><div class="wish-section-title">Wishlist dac biet</div>
+<div class="wishlist" id="wishlist-special"></div></div>
+<div class="form-actions"><button class="btn btn-primary btn-large" id="btn-to-confirm" type="button">Tiep tuc →</button></div>
+</section>
+<section class="scene" id="scene-confirm">
+<div class="paper-bg"></div>
+<h2 class="scene-title">Xac nhan tham gia</h2>
+<p class="scene-subtitle">Kiem tra lai thong tin nhe</p>
+<div class="summary-card">
+<div class="summary-row"><span class="summary-label">Ten</span><span class="summary-value" id="sum-name">—</span></div>
+<div class="summary-row"><span class="summary-label">Xung ho</span><span class="summary-value" id="sum-role">—</span></div>
+<div class="summary-row"><span class="summary-label">Qua / ghi chu</span><span class="summary-value" id="sum-wishlist">—</span></div>
+</div>
+<button class="btn btn-primary btn-large" id="btn-rsvp" type="button">Giu cho cho toi</button>
+<canvas id="confetti-canvas"></canvas>
+</section>
+<section class="scene" id="scene-thanks">
+<div class="paper-bg"></div>
+<div class="thanks-content">
+<div class="thanks-emoji">✨</div>
+<h2 class="thanks-title" id="thanks-title">Cam on ban</h2>
+<p class="thanks-msg" id="thanks-msg">Mot cho ngoi da duoc giu rieng.</p>
+<div class="countdown">
+<div class="countdown-label">Con</div>
+<div class="countdown-value" id="countdown-days">—</div>
+<div class="countdown-unit">ngay nua gap nhau tai Ta Vet</div>
+</div></div>
+</section>
+</div>
+<script>
+const CONFIG={invitationLetter:`Minh viet vai dong nay\nvoi rat nhieu chan thanh.\n\nTuoi moi sap toi —\nminh muon duoc ngoi cung\nnhung nguoi quan trong,\nuong mot ly, ke vai cau chuyen,\nva cam on vi da o ben.\n\nKhong can mang gi cau ky.\nChi can ban toi la du\nde buoi toi ay tro nen dac biet.\n\nHen gap ban\nvao toi thu Bay tai Ta Vet.`,senderName:'Viet Nam',eventDate:'03/10/2026',eventDow:'Thu Bay',eventTime:'Tu 18:00',eventPlace:'Ta Vet Coffee & Pub',eventAddress:'11 Vo Thi Sau, Hue',eventMapsUrl:'https://maps.google.com/?q=Ta+Vet+Coffee+Pub+11+Vo+Thi+Sau+Hue',eventDateISO:'2026-10-03',wishlistNormal:['Mot bo hoa nho','Mot cuon sach hay','Ca phe / tra'],wishlistSpecial:['Su co mat cua ban tai bua tiec'],gasEndpoint:''};
+const state={name:'',role:'',wishlist:[],attending:true};
+const $=s=>document.querySelector(s);const $$=s=>document.querySelectorAll(s);
+const scenes={horses:$('#scene-horses'),envelope:$('#scene-envelope'),intro:$('#scene-intro'),letter:$('#scene-letter'),info:$('#scene-info'),wishlist:$('#scene-wishlist'),confirm:$('#scene-confirm'),thanks:$('#scene-thanks')};
+function showScene(name){const cur=document.querySelector('.scene.active');const next=scenes[name];if(!next||cur===next)return;const tl=gsap.timeline({onComplete:()=>{if(cur){cur.classList.remove('active');gsap.set(cur,{clearProps:'all'})}next.classList.add('active')}});if(cur)tl.to(cur,{opacity:0,y:-16,duration:.4,ease:'power2.inOut'});gsap.set(next,{opacity:0,y:24});next.classList.add('active');tl.to(next,{opacity:1,y:0,duration:.5,ease:'power2.out'},cur?'-=0.12':0)}
+function horseSVG(color,id){return`<svg viewBox="0 0 140 90" xmlns="http://www.w3.org/2000/svg"><g fill="${color}"><ellipse cx="62" cy="48" rx="36" ry="18"/><path d="M92 42c8-6 14-18 12-26-1-3-4-5-7-4-5 2-9 10-12 18-2 4-2 8 0 10 3 2 5 3 7 2z"/><ellipse cx="108" cy="18" rx="9" ry="8"/><path d="M104 10l-2-8 6 4z"/><path d="M94 28c-2-8 0-14 4-18 1 5 2 10 0 16-1 2-3 3-4 2z" opacity=".7"/><path d="M28 44c-10 2-18 10-20 18 6-2 14-6 20-12 2-2 2-5 0-6z" opacity=".85"/><g class="leg-front"><path d="M78 58c1 8 2 16 1 22h5c1-8 0-16-1-22z"/><path d="M88 56c2 9 3 17 2 24h5c1-9 0-17-2-24z" opacity=".9"/></g><g class="leg-hind"><path d="M42 58c-1 9-2 17-1 24h5c0-8 1-16 1-24z"/><path d="M52 56c0 10-1 18 0 24h5c0-8 1-16 0-24z" opacity=".9"/></g></g><circle cx="111" cy="16" r="1.5" fill="#2a1c10" opacity=".6"/></svg>`}
+function initHorses(){const sky=$('#sky-stars');for(let i=0;i<48;i++){const s=document.createElement('span');s.style.left=Math.random()*100+'%';s.style.top=Math.random()*58+'%';s.style.animationDelay=Math.random()*2.8+'s';s.style.width=s.style.height=(1+Math.random()*2.2)+'px';sky.appendChild(s)}gsap.to('#moon',{scale:1.06,opacity:.95,duration:3.5,ease:'sine.inOut',yoyo:true,repeat:-1});const track=$('#horse-track');const dustEl=$('#dust');const colors=['#c4a574','#a89070','#8b7355','#d4b896','#9a8060','#bba07a','#c9b08a'];const herd=[{layer:'far',scale:.55,bottom:28,speed:3.6,count:3,stagger:.35},{layer:'mid',scale:.78,bottom:12,speed:2.8,count:3,stagger:.28},{layer:'near',scale:1.05,bottom:0,speed:2.2,count:3,stagger:.22}];const allHorses=[];let idx=0;herd.forEach(band=>{for(let i=0;i<band.count;i++){const el=document.createElement('div');el.className='horse '+band.layer;el.innerHTML=horseSVG(colors[idx%colors.length],idx);el.style.left='-120px';el.style.bottom=band.bottom+(Math.random()*8-2)+'px';el.style.width=(88*band.scale)+'px';el.style.height=(64*band.scale)+'px';track.appendChild(el);allHorses.push({el,band,i,idx});idx++}});gsap.to('#horses-caption',{opacity:1,duration:1.1,delay:.25,ease:'power2.out'});const screenW=()=>($('#app')?$('#app').clientWidth:window.innerWidth)||400;const master=gsap.timeline({delay:.5,onComplete:()=>{setTimeout(()=>showScene('envelope'),500);initEnvelopeIdle()}});allHorses.forEach(({el,band,i})=>{const startX=-140-i*50-Math.random()*30;const endX=screenW()+100+i*40;const dur=band.speed+Math.random()*.35;const delay=i*band.stagger+(band.layer==='far'?.15:band.layer==='mid'?.05:0);master.fromTo(el,{x:startX,opacity:0},{x:endX,opacity:1,duration:dur,ease:'none',delay},0);const bobAmt=band.layer==='near'?7:band.layer==='mid'?5:3.5;gsap.to(el,{y:-bobAmt,duration:.16+Math.random()*.04,yoyo:true,repeat:Math.ceil(dur/.32)*2,ease:'sine.inOut',delay:.5+delay});gsap.to(el,{rotation:band.layer==='near'?3:2,duration:.32,yoyo:true,repeat:Math.ceil(dur/.64),ease:'sine.inOut',delay:.5+delay});const front=el.querySelector('.leg-front');const hind=el.querySelector('.leg-hind');if(front)gsap.to(front,{rotation:22,transformOrigin:'50% 0%',duration:.15,yoyo:true,repeat:Math.ceil(dur/.3)*2,ease:'sine.inOut',delay:.5+delay});if(hind)gsap.to(hind,{rotation:-20,transformOrigin:'50% 0%',duration:.15,yoyo:true,repeat:Math.ceil(dur/.3)*2,ease:'sine.inOut',delay:.58+delay})});for(let d=0;d<18;d++){const speck=document.createElement('i');dustEl.appendChild(speck);const dustDelay=.9+d*.12;gsap.set(speck,{left:(8+d*5)+'%',bottom:Math.random()*12,scale:.4+Math.random()*.8});gsap.to(speck,{opacity:.55,y:-12-Math.random()*18,x:(Math.random()-.5)*20,scale:1.4,duration:.7,delay:dustDelay,ease:'power1.out'});gsap.to(speck,{opacity:0,duration:.45,delay:dustDelay+.5})}master.to('#horses-caption',{opacity:0,y:-12,duration:.55},'-=0.9');master.to('#moon',{opacity:.3,duration:.5},'-=0.6');master.to('#scene-horses',{opacity:.25,duration:.45},'-=0.35')}
+function initEnvelopeIdle(){gsap.to('#envelope-wrap',{y:-5,duration:2.2,ease:'sine.inOut',yoyo:true,repeat:-1});gsap.to('#envelope-seal',{rotation:4,duration:1.8,ease:'sine.inOut',yoyo:true,repeat:-1})}
+function openEnvelope(){const btn=$('#btn-open-envelope');if(btn.disabled)return;btn.disabled=true;gsap.killTweensOf(['#envelope-wrap','#envelope-seal']);const tl=gsap.timeline({onComplete:()=>setTimeout(()=>showScene('intro'),250)});tl.to('#envelope-flap',{rotationX:-170,duration:.85,ease:'power2.inOut',transformOrigin:'top center'}).to('#envelope-seal',{scale:.5,opacity:0,duration:.35},'-=0.65').to('#envelope-letter-peek',{y:-100,duration:.65,ease:'power2.out'},'-=0.45').to('#envelope-wrap',{scale:.9,opacity:0,y:-36,duration:.45,ease:'power2.in'},'-=0.2').to('.envelope-hint,#btn-open-envelope',{opacity:0,duration:.3},'-=0.4')}
+function initIntro(){$('#btn-open-letter').addEventListener('click',()=>{const name=$('#input-name').value.trim();const role=$('#select-role').value;if(!name){$('#input-name').focus();gsap.fromTo('#input-name',{x:-5},{x:5,duration:.07,repeat:5,yoyo:true,clearProps:'x'});return}if(!role){$('#select-role').focus();gsap.fromTo('#select-role',{x:-5},{x:5,duration:.07,repeat:5,yoyo:true,clearProps:'x'});return}state.name=name;state.role=role;prepareLetter();showScene('letter');setTimeout(animateLetter,350)})}
+function prepareLetter(){$('#letter-greeting').textContent=state.role+' '+state.name+' than men,';const body=$('#letter-body');body.innerHTML='';CONFIG.invitationLetter.trim().split('\n').forEach(line=>{const span=document.createElement('span');const empty=!line.trim();span.className=empty?'line is-break':'line';span.textContent=empty?'\u00A0':line;body.appendChild(span)})}
+function animateLetter(){const lines=$$('#letter-body .line');gsap.fromTo('#letter-greeting',{opacity:0,y:8},{opacity:1,y:0,duration:.5});gsap.to(lines,{opacity:1,duration:.32,stagger:.14,ease:'power1.out',delay:.25});gsap.fromTo('.letter-closing',{opacity:0},{opacity:1,duration:.55,delay:.3+lines.length*.14})}
+function buildWishlist(){const normal=$('#wishlist-normal');const special=$('#wishlist-special');normal.innerHTML='';special.innerHTML='';CONFIG.wishlistNormal.forEach(item=>{const div=document.createElement('div');div.className='wish-item';div.dataset.value=item;div.innerHTML='<div class="wish-check">✓</div><span class="wish-label">'+item+'</span>';div.addEventListener('click',()=>toggleWish(div,item));normal.appendChild(div)});CONFIG.wishlistSpecial.forEach(item=>{const div=document.createElement('div');div.className='wish-item special';div.dataset.value=item;div.innerHTML='<div class="wish-check">✓</div><span class="wish-label">'+item+'</span>';div.addEventListener('click',()=>toggleWish(div,item));special.appendChild(div)})}
+function toggleWish(el,val){el.classList.toggle('selected');if(el.classList.contains('selected')){if(!state.wishlist.includes(val))state.wishlist.push(val)}else{state.wishlist=state.wishlist.filter(w=>w!==val)}}
+function updateSummary(){$('#sum-name').textContent=state.name||'—';$('#sum-role').textContent=state.role||'—';$('#sum-wishlist').textContent=state.wishlist.length?state.wishlist.join(', '):'Chua chon'}
+function launchConfetti(){const canvas=$('#confetti-canvas');const ctx=canvas.getContext('2d');const rect=canvas.parentElement.getBoundingClientRect();canvas.width=rect.width;canvas.height=rect.height;const colors=['#c9a84c','#e8c96a','#8b6f5c','#f5f0e6','#fff'];const pieces=Array.from({length:70},()=>({x:Math.random()*canvas.width,y:-20-Math.random()*40,w:5+Math.random()*6,h:3+Math.random()*4,color:colors[Math.floor(Math.random()*colors.length)],vx:(Math.random()-.5)*4,vy:2+Math.random()*3.5,rot:Math.random()*360,vr:(Math.random()-.5)*10}));let frame=0;(function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);pieces.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.08;p.rot+=p.vr;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot*Math.PI/180);ctx.fillStyle=p.color;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore()});if(++frame<110)requestAnimationFrame(draw)})()}
+async function submitRSVP(){if(!CONFIG.gasEndpoint)return;await fetch(CONFIG.gasEndpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({timestamp:new Date().toISOString(),name:state.name,role:state.role,wishlist:state.wishlist,attending:true})})}
+function prepareThanks(){const who=state.role&&state.name?state.role+' '+state.name:(state.name||'ban');$('#thanks-title').textContent='Cam on '+who;const polite=(state.role==='Anh'||state.role==='Chi')?state.role.toLowerCase():'ban';$('#thanks-msg').textContent='Mot cho ngoi da duoc giu rieng cho '+polite+' tai Ta Vet.';const target=new Date(CONFIG.eventDateISO+'T18:00:00');$('#countdown-days').textContent=Math.max(0,Math.ceil((target-new Date())/86400000))}
+function init(){$('#btn-open-envelope').addEventListener('click',openEnvelope);$('#envelope-wrap').addEventListener('click',openEnvelope);initIntro();$('#btn-to-info').addEventListener('click',()=>{gsap.to('#letter-sheet',{opacity:0,x:-24,duration:.4,ease:'power2.in',onComplete:()=>{gsap.set('#letter-sheet',{clearProps:'all'});showScene('info');gsap.fromTo('#info-card',{opacity:0,y:30},{opacity:1,y:0,duration:.55})}});$('#btn-maps').addEventListener('click',()=>window.open(CONFIG.eventMapsUrl,'_blank','noopener'));$('#btn-to-wishlist').addEventListener('click',()=>{buildWishlist();showScene('wishlist')});$('#btn-to-confirm').addEventListener('click',()=>{updateSummary();showScene('confirm')});$('#btn-rsvp').addEventListener('click',async()=>{const btn=$('#btn-rsvp');btn.disabled=true;btn.textContent='Dang gui...';launchConfetti();try{await submitRSVP()}catch(e){}setTimeout(()=>{prepareThanks();showScene('thanks');gsap.fromTo('.thanks-content > *',{opacity:0,y:16},{opacity:1,y:0,stagger:.12,duration:.5})},1100)});initHorses()}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+</script>
+</body>
+</html>
