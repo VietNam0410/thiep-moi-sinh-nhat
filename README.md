@@ -1,16 +1,16 @@
-# Thiep moi sinh nhat — Viet Nam
+# Thiệp mời sinh nhật — Việt Nam
 
-Tiec: **03/10/2026 (Thu Bay)** · **Ta Vet Coffee & Pub** · Hue
-
-## Link online (sau khi bat GitHub Pages)
-https://vietnam0410.github.io/thiep-moi-sinh-nhat/
-
-## Cach bat Pages
-1. Vao repo → Settings → Pages
-2. Source: Deploy from a branch
-3. Branch: main, folder: / (root) → Save
-4. Doi 1-2 phut, mo link tren
+**Live:** https://vietnam0410.github.io/thiep-moi-sinh-nhat/
 
 ## Files
-- `index.html` — thiep day du
-- `GoogleAppsScript.js` — luu RSVP vao Google Sheets → xuat Excel
+- `index.html` — UI
+- `app.js` — logic (horses + fireworks + RSVP)
+- `horse.js` — pixel horse sprites
+- `GoogleAppsScript.js` — paste into Apps Script, deploy Web App, put URL in `CONFIG.gasEndpoint`
+
+## Google Sheet setup
+1. Create Sheet + Apps Script from `GoogleAppsScript.js`
+2. Deploy as Web App (Anyone)
+3. Set in `app.js`:
+   - `CONFIG.gasEndpoint = 'YOUR_WEB_APP_URL'`
+   - `CONFIG.sheetUrl = 'YOUR_SHEET_SHARE_LINK'`
