@@ -10,8 +10,8 @@ eventMapsUrl:'https://maps.google.com/?q=Tà+Vẹt+Coffee+Pub+11+Võ+Thị+Sáu+
 eventDateISO:'2026-10-03',
 wishlistNormal:['Cây bút chì','Quyển vở','Balo cầu lông','Vợt cầu lông','Cán vợt','Giày cầu lông','Tất cầu lông','Ống cầu'],
 wishlistSpecial:['Sự có mặt của bạn tại bữa tiệc'],
-gasEndpoint:'',
-sheetUrl:''
+gasEndpoint:'https://script.google.com/macros/s/AKfycbyNPJAmfy_V-MpDqFqqMg1MrfR7U7u2RgRA9mXdxnAV3d4kge8OpRkBrNrlDJaMKl-G3A/exec',
+sheetUrl:'https://docs.google.com/spreadsheets/d/1CYq7lzKBqN3ArpcnlhV_RgTFMoeHNDv5OIIiikq49XQ/edit?gid=0#gid=0'
 };
 const state={name:'',role:'',wishlist:[],attending:true};
 const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
