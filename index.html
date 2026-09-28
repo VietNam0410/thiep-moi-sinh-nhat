@@ -18,21 +18,21 @@
     .scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(20px + var(--safe-top)) 20px calc(20px + var(--safe-bottom));opacity:0;pointer-events:none;z-index:1;overflow:hidden}
     .scene.active{opacity:1;pointer-events:auto;z-index:10}
     .paper-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 20%,rgba(201,168,76,.06),transparent 50%),linear-gradient(180deg,var(--cream),var(--paper) 55%,#ebe4d6)}
-    #scene-horses{background:linear-gradient(180deg,#120e0a,#1f1610 35%,#2e2016 70%,#3a2818)}
+    #scene-horses{background:linear-gradient(180deg,#1a2a1a,#2a3a2a 40%,#3d4a30 100%)}
     .sky-stars{position:absolute;inset:0;overflow:hidden;pointer-events:none}
     .sky-stars span{position:absolute;width:2px;height:2px;background:#f5e6c8;border-radius:50%;opacity:.5;animation:twinkle 2.5s ease-in-out infinite}
     @keyframes twinkle{0%,100%{opacity:.2}50%{opacity:.95}}
     .moon{position:absolute;top:12%;right:14%;width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f5e8c8,#d4b96a 60%,#a89050);box-shadow:0 0 40px rgba(212,185,106,.35);opacity:.85;z-index:1}
-    .ground{position:absolute;bottom:0;left:0;right:0;height:32%;background:linear-gradient(180deg,#3a2a1c,#2a1c12 40%,#1a120c);z-index:2}
-    .horse-track{position:absolute;bottom:20%;left:0;right:0;height:100px;overflow:visible;pointer-events:none;z-index:3}
-    .horse{position:absolute;bottom:0;width:88px;height:64px;will-change:transform;transform-origin:center bottom}
-    .horse svg{width:100%;height:100%;display:block;overflow:visible}
-    .horse.far{opacity:.45;filter:blur(.5px)}
-    .horse.mid{opacity:.75}
-    .horse.near{opacity:1;filter:drop-shadow(0 6px 8px rgba(0,0,0,.45))}
-    .dust{position:absolute;bottom:22%;left:0;right:0;height:40px;pointer-events:none;z-index:2;overflow:hidden}
+    .ground{position:absolute;bottom:0;left:0;right:0;height:32%;background:linear-gradient(180deg,#4a6a40,#3a5535 40%,#2a3a28 100%);z-index:2}
+    .horse-track{position:absolute;bottom:18%;left:0;right:0;height:120px;overflow:visible;pointer-events:none;z-index:3}
+    .horse{position:absolute;bottom:0;width:96px;height:96px;will-change:transform;transform-origin:center bottom;image-rendering:pixelated;image-rendering:crisp-edges}
+    .horse img{width:100%;height:100%;object-fit:contain;display:block;image-rendering:pixelated;image-rendering:crisp-edges;filter:drop-shadow(0 4px 6px rgba(0,0,0,.35))}
+    .horse.far{opacity:.5;width:56px;height:56px}
+    .horse.mid{opacity:.8;width:76px;height:76px}
+    .horse.near{opacity:1;width:100px;height:100px}
+    .dust{position:absolute;bottom:20%;left:0;right:0;height:40px;pointer-events:none;z-index:2;overflow:hidden}
     .dust i{position:absolute;bottom:0;width:6px;height:6px;border-radius:50%;background:rgba(180,150,110,.5);opacity:0}
-    .horses-caption{position:relative;z-index:5;text-align:center;color:rgba(245,230,200,.88);font-size:15px;letter-spacing:.06em;margin-top:auto;margin-bottom:52px;opacity:0}
+    .horses-caption{position:relative;z-index:5;text-align:center;color:rgba(245,230,200,.92);font-size:15px;letter-spacing:.06em;margin-top:auto;margin-bottom:52px;opacity:0}
     .horses-caption strong{display:block;font-size:19px;color:var(--gold-soft);font-weight:500;margin-bottom:6px}
     .envelope-wrap{position:relative;width:280px;height:180px;perspective:900px;z-index:5}
     .envelope-body{position:absolute;inset:0;background:linear-gradient(180deg,#e8dcc8,#d9cbb0);border-radius:4px 4px 8px 8px;box-shadow:0 20px 40px rgba(0,0,0,.35)}
@@ -96,6 +96,7 @@
     .countdown-value{font-size:40px;font-weight:600;color:var(--ink);line-height:1.1}
     .countdown-unit{font-size:13px;color:var(--brown-light);margin-top:6px}
     #confetti-canvas{position:absolute;inset:0;pointer-events:none;z-index:100}
+    .sound-hint{position:absolute;bottom:calc(12px + var(--safe-bottom));left:50%;transform:translateX(-50%);z-index:20;font-size:11px;color:rgba(245,230,200,.55);letter-spacing:.04em;opacity:0;pointer-events:none}
   </style>
 </head>
 <body>
@@ -107,6 +108,7 @@
       <div class="dust" id="dust"></div>
       <div class="horse-track" id="horse-track"></div>
       <p class="horses-caption" id="horses-caption"><strong>Tuổi Ngựa</strong>Một đàn ngựa đang mang thư tới…</p>
+      <p class="sound-hint" id="sound-hint">Chạm màn hình để bật âm thanh</p>
     </section>
     <section class="scene" id="scene-envelope">
       <div class="envelope-wrap" id="envelope-wrap">
@@ -149,7 +151,7 @@
         <div class="info-date">03/10/2026</div><div class="info-dow">Thứ Bảy</div>
         <div class="info-divider"></div>
         <div class="info-row"><span>🕐</span><span>Từ 18:00</span></div>
-        <div class="info-row"><span>📍</span><span>Tà Vẹt Coffee & Pub</span></div>
+        <div class="info-row"><span>📍</span><span>Tà Vẹt Coffee &amp; Pub</span></div>
         <div class="info-row" style="font-size:12px;color:var(--brown-light);margin-top:4px">11 Võ Thị Sáu, Huế</div>
       </div>
       <div class="form-actions">
@@ -159,7 +161,7 @@
     </section>
     <section class="scene" id="scene-wishlist">
       <div class="paper-bg"></div>
-      <h2 class="scene-title">Gợi ý quà & lời mời</h2>
+      <h2 class="scene-title">Gợi ý quà &amp; lời mời</h2>
       <p class="scene-subtitle">Chọn những gì bạn muốn mang theo — hoặc chỉ cần mang chính mình</p>
       <div class="wish-section"><div class="wish-section-title">Wishlist thường</div>
         <p class="wish-section-note">Danh sách gợi ý — bạn có thể chọn hoặc bỏ qua</p>
