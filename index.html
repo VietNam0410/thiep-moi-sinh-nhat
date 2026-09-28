@@ -24,14 +24,17 @@
     @keyframes twinkle{0%,100%{opacity:.2}50%{opacity:.95}}
     .moon{position:absolute;top:12%;right:14%;width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f5e8c8,#d4b96a 60%,#a89050);box-shadow:0 0 40px rgba(212,185,106,.35);opacity:.85;z-index:1}
     .ground{position:absolute;bottom:0;left:0;right:0;height:32%;background:linear-gradient(180deg,#4a6a40,#3a5535 40%,#2a3a28 100%);z-index:2}
-    .horse-track{position:absolute;bottom:18%;left:0;right:0;height:120px;overflow:visible;pointer-events:none;z-index:3}
-    .horse{position:absolute;bottom:0;width:96px;height:96px;will-change:transform;transform-origin:center bottom;image-rendering:pixelated;image-rendering:crisp-edges}
-    .horse img{width:100%;height:100%;object-fit:contain;display:block;image-rendering:pixelated;image-rendering:crisp-edges;filter:drop-shadow(0 4px 6px rgba(0,0,0,.35))}
-    .horse.far{opacity:.5;width:56px;height:56px}
-    .horse.mid{opacity:.8;width:76px;height:76px}
-    .horse.near{opacity:1;width:100px;height:100px}
-    .dust{position:absolute;bottom:20%;left:0;right:0;height:40px;pointer-events:none;z-index:2;overflow:hidden}
-    .dust i{position:absolute;bottom:0;width:6px;height:6px;border-radius:50%;background:rgba(180,150,110,.5);opacity:0}
+    .horse-track{position:absolute;bottom:12%;left:0;right:0;height:160px;overflow:visible;pointer-events:none;z-index:3}
+    .horse{position:absolute;bottom:0;will-change:transform;transform-origin:center bottom;image-rendering:pixelated;image-rendering:crisp-edges}
+    .horse img{width:100%;height:100%;object-fit:contain;display:block;image-rendering:pixelated;image-rendering:crisp-edges;filter:drop-shadow(0 6px 8px rgba(0,0,0,.4))}
+    .horse.far{opacity:.55}
+    .horse.mid{opacity:.85}
+    .horse.near{opacity:1}
+    .horse-trail{position:absolute;right:75%;top:42%;width:48px;height:3px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(255,230,180,.45));opacity:.5;pointer-events:none}
+    .horse.far .horse-trail{opacity:.25;width:28px}
+    .horse.mid .horse-trail{opacity:.4;width:36px}
+    .dust{position:absolute;bottom:18%;left:0;right:0;height:50px;pointer-events:none;z-index:2;overflow:hidden}
+    .dust i{position:absolute;bottom:0;width:8px;height:8px;border-radius:50%;background:rgba(200,180,140,.5);opacity:0}
     .horses-caption{position:relative;z-index:5;text-align:center;color:rgba(245,230,200,.92);font-size:15px;letter-spacing:.06em;margin-top:auto;margin-bottom:52px;opacity:0}
     .horses-caption strong{display:block;font-size:19px;color:var(--gold-soft);font-weight:500;margin-bottom:6px}
     .envelope-wrap{position:relative;width:280px;height:180px;perspective:900px;z-index:5}
@@ -196,7 +199,7 @@
       </div>
     </section>
   </div>
-  <script src="horse-data.js"></script>
+  <script src="horse.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
