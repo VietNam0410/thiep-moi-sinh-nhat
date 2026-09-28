@@ -1,1 +1,206 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#1a1612"/>
+<title>Thiệp Mời — Việt Nam</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;width:100%;overflow:hidden;font-family:'Be Vietnam Pro',system-ui,sans-serif;background:#1a1612;color:#2c2118;-webkit-font-smoothing:antialiased;touch-action:manipulation}
+:root{--paper:#f5f0e6;--cream:#faf6f0;--ivory:#fffdf8;--brown:#5c4033;--brown-light:#8b6f5c;--gold:#c9a84c;--gold-soft:#d4b96a;--ink:#2c2118;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);--font-ui:'Be Vietnam Pro',system-ui,sans-serif;--font-script:'Great Vibes',cursive}
+#app{position:relative;width:100%;height:100%;max-width:430px;margin:0 auto;background:var(--paper);overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.5)}
+@media(min-width:431px){body{display:flex;align-items:center;justify-content:center;background:#0f0d0b}#app{height:min(100vh,860px);border-radius:24px;border:1px solid rgba(201,168,76,.2)}}
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(20px + var(--safe-top)) 20px calc(20px + var(--safe-bottom));opacity:0;pointer-events:none;z-index:1;overflow:hidden}
+.scene.active{opacity:1;pointer-events:auto;z-index:10}
+.paper-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 20%,rgba(201,168,76,.06),transparent 50%),linear-gradient(180deg,var(--cream),var(--paper) 55%,#ebe4d6)}
+#scene-horses{background:linear-gradient(180deg,#120e0a,#1f1610 35%,#2e2016 70%,#3a2818)}
+.sky-stars{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.sky-stars span{position:absolute;width:2px;height:2px;background:#f5e6c8;border-radius:50%;opacity:.5;animation:twinkle 2.5s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.2}50%{opacity:.95}}
+.moon{position:absolute;top:12%;right:14%;width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f5e8c8,#d4b96a 60%,#a89050);box-shadow:0 0 40px rgba(212,185,106,.35);opacity:.85;z-index:1}
+.ground{position:absolute;bottom:0;left:0;right:0;height:32%;background:linear-gradient(180deg,#3a2a1c,#2a1c12 40%,#1a120c);z-index:2}
+.horse-track{position:absolute;bottom:20%;left:0;right:0;height:100px;overflow:visible;pointer-events:none;z-index:3}
+.dust{position:absolute;bottom:22%;left:0;right:0;height:40px;pointer-events:none;z-index:2;overflow:hidden}
+.dust i{position:absolute;bottom:0;width:6px;height:6px;border-radius:50%;background:rgba(180,150,110,.5);opacity:0}
+.horses-caption{position:relative;z-index:5;text-align:center;color:rgba(245,230,200,.88);font-size:15px;letter-spacing:.06em;margin-top:auto;margin-bottom:52px;opacity:0}
+.horses-caption strong{display:block;font-size:19px;color:var(--gold-soft);font-weight:500;margin-bottom:6px}
+.sound-hint{position:absolute;bottom:calc(14px + var(--safe-bottom));left:50%;transform:translateX(-50%);z-index:20;font-size:11px;color:rgba(245,230,200,.5);opacity:0;pointer-events:none}
+#fw-canvas{position:absolute;inset:0;pointer-events:none;z-index:4}
+.envelope-wrap{position:relative;width:280px;height:180px;perspective:900px;z-index:5}
+.envelope-body{position:absolute;inset:0;background:linear-gradient(180deg,#e8dcc8,#d9cbb0);border-radius:4px 4px 8px 8px;box-shadow:0 20px 40px rgba(0,0,0,.35)}
+.envelope-flap{position:absolute;top:0;left:0;right:0;height:90px;background:linear-gradient(180deg,#f0e6d4,#e0d2ba);clip-path:polygon(0 0,50% 70%,100% 0);transform-origin:top center;z-index:5}
+.envelope-flap::after{content:'';position:absolute;top:28px;left:50%;transform:translateX(-50%);width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,var(--gold) 40%,#a88b3a)}
+.envelope-letter-peek{position:absolute;left:12px;right:12px;top:22px;height:130px;background:var(--ivory);border-radius:2px;z-index:2}
+.envelope-seal{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);width:46px;height:46px;z-index:6;border-radius:50%;background:radial-gradient(circle at 35% 35%,#e8c96a,var(--gold) 50%,#a07a28);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+.envelope-hint{margin-top:44px;text-align:center;z-index:5;position:relative;color:rgba(245,240,230,.7);font-size:13px}
+.envelope-hint strong{display:block;color:var(--gold-soft);font-size:17px;font-weight:500;margin-bottom:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;min-height:48px;border:none;border-radius:50px;font-family:var(--font-ui);font-size:15px;font-weight:600;letter-spacing:.04em;cursor:pointer;z-index:5}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:linear-gradient(135deg,var(--gold),#b8943a);color:#fff;box-shadow:0 6px 20px rgba(201,168,76,.35)}
+.btn-ghost{background:rgba(255,255,255,.5);color:var(--brown);border:1px solid rgba(139,111,92,.25)}
+.btn-large{width:100%;max-width:280px;padding:16px 32px;font-size:16px}
+.btn-nav-bottom{width:100%;max-width:280px;margin-top:20px;z-index:5;position:relative}
+.scene-title{font-size:20px;font-weight:600;color:var(--ink);text-align:center;margin-bottom:8px;line-height:1.35;max-width:300px;z-index:2;position:relative}
+.scene-subtitle{font-size:13px;color:var(--brown-light);text-align:center;margin-bottom:28px;line-height:1.6;max-width:280px;z-index:2;position:relative}
+.form-group{width:100%;max-width:320px;margin-bottom:18px;z-index:2;position:relative}
+.form-label{display:block;font-size:13px;color:var(--brown);margin-bottom:8px}
+.form-input,.form-select{width:100%;padding:14px 16px;min-height:48px;border:1.5px solid rgba(139,111,92,.28);border-radius:12px;background:var(--ivory);font-family:var(--font-ui);font-size:16px;color:var(--ink);outline:none;-webkit-appearance:none;appearance:none}
+.form-input:focus,.form-select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.15)}
+.form-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238b6f5c' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+.form-actions{margin-top:28px;width:100%;max-width:320px;display:flex;flex-direction:column;gap:12px;align-items:center;z-index:2}
+#scene-letter{justify-content:flex-start;padding-top:calc(16px + var(--safe-top));padding-bottom:calc(28px + var(--safe-bottom));overflow-y:auto;-webkit-overflow-scrolling:touch}
+.letter-sheet{width:100%;max-width:340px;background:var(--ivory);border-radius:6px;padding:32px 26px 28px;position:relative;z-index:2;margin-bottom:20px;box-shadow:0 8px 30px rgba(60,40,20,.12)}
+.letter-greeting{font-family:var(--font-script);font-size:26px;color:var(--ink);margin-bottom:18px;line-height:1.3}
+.letter-body{font-family:var(--font-script);font-size:20px;line-height:1.55;color:var(--brown);white-space:pre-line}
+.letter-body .line{opacity:0;display:block;min-height:1.1em}
+.letter-body .line.is-break{min-height:.55em}
+.letter-closing{margin-top:28px;text-align:right}
+.letter-closing .sign-label{font-family:var(--font-ui);font-size:13px;color:var(--brown-light);margin-bottom:4px}
+.letter-signature{font-family:var(--font-script);font-size:32px;color:var(--ink);line-height:1.2;display:flex;align-items:center;justify-content:flex-end;gap:6px}
+.letter-signature .star{display:inline-block;color:var(--gold);font-size:18px;transform:translateY(-4px)}
+.info-card{width:100%;max-width:320px;background:var(--ivory);border-radius:16px;padding:28px 24px;text-align:center;z-index:2;position:relative;box-shadow:0 10px 36px rgba(60,40,20,.12)}
+.info-icon{font-size:36px;margin-bottom:12px}
+.info-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px}
+.info-date{font-size:26px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.info-dow{font-size:14px;color:var(--brown-light);margin-bottom:16px}
+.info-divider{width:36px;height:1px;background:var(--gold-soft);margin:0 auto 16px;opacity:.6}
+.info-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;font-size:15px;color:var(--brown)}
+.wish-section{width:100%;max-width:320px;z-index:2;position:relative;margin-bottom:20px}
+.wish-section-title{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;text-align:center}
+.wish-section-note{font-size:12px;color:var(--brown-light);text-align:center;margin-bottom:12px;line-height:1.45}
+.wishlist{display:flex;flex-direction:column;gap:10px}
+.wish-item{display:flex;align-items:center;gap:12px;padding:13px 16px;min-height:48px;background:var(--ivory);border:1.5px solid rgba(139,111,92,.2);border-radius:12px;cursor:pointer;user-select:none}
+.wish-item.selected{border-color:var(--gold);background:rgba(201,168,76,.08)}
+.wish-item.special{border-color:rgba(201,168,76,.45);background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(255,253,248,.9))}
+.wish-check{width:22px;height:22px;border:2px solid var(--brown-light);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent}
+.wish-item.selected .wish-check{background:var(--gold);border-color:var(--gold);color:#fff}
+.wish-label{font-size:14px;color:var(--ink);line-height:1.35}
+.wish-custom{cursor:default;padding:10px 14px}
+.wish-input{flex:1;border:none;background:transparent;font-family:var(--font-ui);font-size:14px;color:var(--ink);outline:none;min-width:0;width:100%}
+.wish-input::placeholder{color:var(--brown-light);opacity:.75}
+.wish-custom.selected{border-color:var(--gold);background:rgba(201,168,76,.08)}
+.wish-custom .wish-check{color:var(--gold);border-color:var(--gold);font-size:11px}
+.summary-card{width:100%;max-width:320px;background:var(--ivory);border-radius:16px;padding:20px;margin-bottom:24px;z-index:2;position:relative;box-shadow:0 8px 28px rgba(60,40,20,.1)}
+.summary-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid rgba(139,111,92,.12);font-size:13px}
+.summary-row:last-child{border-bottom:none}
+.summary-label{color:var(--brown-light)}
+.summary-value{color:var(--ink);font-weight:500;text-align:right;max-width:62%}
+.thanks-content{text-align:center;max-width:300px;z-index:2;position:relative}
+.thanks-emoji{font-size:40px;margin-bottom:12px}
+.thanks-title{font-size:22px;font-weight:600;color:var(--ink);margin-bottom:10px;line-height:1.3}
+.thanks-msg{font-size:14px;color:var(--brown);line-height:1.65;margin-bottom:24px}
+.countdown{background:var(--ivory);border-radius:16px;padding:20px 24px;box-shadow:0 6px 24px rgba(60,40,20,.1)}
+.countdown-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px}
+.countdown-value{font-size:40px;font-weight:600;color:var(--ink);line-height:1.1}
+.countdown-unit{font-size:13px;color:var(--brown-light);margin-top:6px}
+#confetti-canvas{position:absolute;inset:0;pointer-events:none;z-index:100}
+</style>
+</head>
+<body>
+<div id="app">
+<section class="scene active" id="scene-horses">
+<canvas id="fw-canvas"></canvas>
+<div class="sky-stars" id="sky-stars"></div>
+<div class="moon" id="moon"></div>
+<div class="ground"></div>
+<div class="dust" id="dust"></div>
+<div class="horse-track" id="horse-track"></div>
+<p class="horses-caption" id="horses-caption"><strong>Tuổi Ngựa</strong>Một đàn ngựa đang mang thư tới…</p>
+<p class="sound-hint" id="sound-hint">Chạm màn hình để bật âm thanh</p>
+</section>
+<section class="scene" id="scene-envelope">
+<div class="envelope-wrap" id="envelope-wrap">
+<div class="envelope-body"><div class="envelope-letter-peek" id="envelope-letter-peek"></div></div>
+<div class="envelope-flap" id="envelope-flap"></div>
+<div class="envelope-seal" id="envelope-seal">✦</div>
+</div>
+<p class="envelope-hint"><strong>Bạn vừa nhận được một lá thư</strong>Chạm để mở</p>
+<button class="btn btn-primary" id="btn-open-envelope" type="button" style="margin-top:24px">Mở thư</button>
+</section>
+<section class="scene" id="scene-intro">
+<div class="paper-bg"></div>
+<h2 class="scene-title">Trước khi đọc thư</h2>
+<p class="scene-subtitle">Cho mình biết đang trò chuyện với ai nhé</p>
+<div class="form-group"><label class="form-label" for="input-name">Tên của bạn</label>
+<input class="form-input" type="text" id="input-name" placeholder="Nhập tên..." maxlength="40" autocomplete="name"/></div>
+<div class="form-group"><label class="form-label" for="select-role">Bạn muốn mình xưng hô với bạn như thế nào?</label>
+<select class="form-select" id="select-role">
+<option value="">Chọn cách xưng hô</option>
+<option value="Anh">Anh</option><option value="Chị">Chị</option><option value="Em">Em</option>
+<option value="Bạn">Bạn</option><option value="Đồng nghiệp">Đồng nghiệp</option>
+<option value="Người yêu">Người yêu</option><option value="Bạn thân">Bạn thân</option>
+</select></div>
+<div class="form-actions"><button class="btn btn-primary btn-large" id="btn-open-letter" type="button">Mở lá thư</button></div>
+</section>
+<section class="scene" id="scene-letter">
+<div class="paper-bg"></div>
+<div class="letter-sheet" id="letter-sheet">
+<p class="letter-greeting" id="letter-greeting"></p>
+<div class="letter-body" id="letter-body"></div>
+<div class="letter-closing"><p class="sign-label">Thân mến,</p>
+<div class="letter-signature"><span class="star">✦</span><span>Việt Nam</span></div></div>
+</div>
+<div class="form-actions"><button class="btn btn-primary btn-large btn-nav-bottom" id="btn-to-info" type="button">Lật trang →</button></div>
+</section>
+<section class="scene" id="scene-info">
+<div class="paper-bg"></div>
+<div class="info-card" id="info-card">
+<div class="info-icon">🎂</div>
+<div class="info-label">Tiệc sinh nhật</div>
+<div class="info-date">03/10/2026</div>
+<div class="info-dow">Thứ Bảy</div>
+<div class="info-divider"></div>
+<div class="info-row"><span>🕐</span><span>Từ 18:00</span></div>
+<div class="info-row"><span>📍</span><span>Tà Vẹt Coffee & Pub</span></div>
+<div class="info-row" style="font-size:12px;color:var(--brown-light);margin-top:4px">11 Võ Thị Sáu, Huế</div>
+</div>
+<div class="form-actions">
+<button class="btn btn-ghost btn-large" id="btn-maps" type="button">Xem địa điểm</button>
+<button class="btn btn-primary btn-large" id="btn-to-wishlist" type="button">Tiếp tục →</button>
+</div>
+</section>
+<section class="scene" id="scene-wishlist">
+<div class="paper-bg"></div>
+<h2 class="scene-title">Gợi ý quà & lời mời</h2>
+<p class="scene-subtitle">Chọn những gì bạn muốn mang theo — hoặc chỉ cần mang chính mình</p>
+<div class="wish-section"><div class="wish-section-title">Wishlist thường</div>
+<p class="wish-section-note">Danh sách gợi ý — bạn có thể chọn hoặc bỏ qua</p>
+<div class="wishlist" id="wishlist-normal"></div></div>
+<div class="wish-section"><div class="wish-section-title">Wishlist đặc biệt</div>
+<div class="wishlist" id="wishlist-special"></div></div>
+<div class="form-actions"><button class="btn btn-primary btn-large" id="btn-to-confirm" type="button">Tiếp tục →</button></div>
+</section>
+<section class="scene" id="scene-confirm">
+<div class="paper-bg"></div>
+<h2 class="scene-title">Xác nhận tham gia</h2>
+<p class="scene-subtitle">Kiểm tra lại thông tin nhé</p>
+<div class="summary-card">
+<div class="summary-row"><span class="summary-label">Tên</span><span class="summary-value" id="sum-name">—</span></div>
+<div class="summary-row"><span class="summary-label">Xưng hô</span><span class="summary-value" id="sum-role">—</span></div>
+<div class="summary-row"><span class="summary-label">Quà / ghi chú</span><span class="summary-value" id="sum-wishlist">—</span></div>
+</div>
+<button class="btn btn-primary btn-large" id="btn-rsvp" type="button">Đồng ý tham gia — Giữ chỗ cho tôi</button>
+<canvas id="confetti-canvas"></canvas>
+</section>
+<section class="scene" id="scene-thanks">
+<div class="paper-bg"></div>
+<div class="thanks-content">
+<div class="thanks-emoji">✨</div>
+<h2 class="thanks-title" id="thanks-title">Cảm ơn bạn</h2>
+<p class="thanks-msg" id="thanks-msg">Sự có mặt của bạn là niềm hạnh phúc của gia đình chúng tui.</p>
+<div class="countdown">
+<div class="countdown-label">Còn</div>
+<div class="countdown-value" id="countdown-days">—</div>
+<div class="countdown-unit">ngày nữa gặp nhau tại Tà Vẹt</div>
+</div></div>
+</section>
+</div>
+<script src="horse.js?v=12"></script>
+<script src="app.js?v=12"></script>
+</body>
+</html>
