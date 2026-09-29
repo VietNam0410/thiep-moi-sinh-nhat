@@ -16,7 +16,7 @@
 const CONFIG = {
 
   /* Nội dung lá thư (mỗi dòng = 1 dòng trên thiệp) */
-invitationLetter: `Bức thư này gửi đến {{role}} là những dòng tâm huyết và sự chân thành.
+  invitationLetter: `Bức thư này gửi đến {{role}} là những dòng tâm huyết và sự chân thành.
 
 Không biết nói gì hơn, chỉ biết nói qua những lời thơ thế này:
 
@@ -24,8 +24,6 @@ Không biết nói gì hơn, chỉ biết nói qua những lời thơ thế này
 <span class="hl">Mời</span> {{role}} {{name}} gần xa tụ về
 <span class="hl">{{role}} {{name}}</span> cưng quá là mê
 <span class="hl">Tới</span> đây tham dự lễ ngày hạ sinh.
-
-
 
 Lịch hẹn để vào trang sau.`,
 
