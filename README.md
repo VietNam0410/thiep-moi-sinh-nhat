@@ -1,16 +1,15 @@
-# Thiệp mời sinh nhật — Việt Nam
+# Thiệp Mời Sinh Nhật
 
-**Live:** https://vietnam0410.github.io/thiep-moi-sinh-nhat/
+Live: https://vietnam0410.github.io/thiep-moi-sinh-nhat/
 
 ## Files
-- `index.html` — UI
-- `app.js` — logic (horses + fireworks + RSVP)
-- `horse.js` — pixel horse sprites
-- `GoogleAppsScript.js` — paste into Apps Script, deploy Web App, put URL in `CONFIG.gasEndpoint`
+- `index.html` — HTML + CSS
+- `horse.js` — sprite pixel ngựa
+- `app.js` + `app2.js` — logic (CONFIG, pháo hoa, ngựa, RSVP)
+- `GoogleAppsScript.js` — deploy lên Google Apps Script để nhận RSVP
 
-## Google Sheet setup
-1. Create Sheet + Apps Script from `GoogleAppsScript.js`
-2. Deploy as Web App (Anyone)
-3. Set in `app.js`:
-   - `CONFIG.gasEndpoint = 'YOUR_WEB_APP_URL'`
-   - `CONFIG.sheetUrl = 'YOUR_SHEET_SHARE_LINK'`
+## Chỉnh nội dung
+Mở `app.js` → object `CONFIG` (thư, ngày, địa điểm, wishlist, gasEndpoint).
+
+## Chèn nhạc
+Trong `app2.js` tìm `MUSIC #1` (mở thư) và `MUSIC #2` (sau RSVP).
