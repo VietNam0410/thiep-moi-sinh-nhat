@@ -358,17 +358,17 @@ function animateLetter() {
 
   gsap.fromTo(
     '#letter-greeting',
-    { opacity: 0, y: 8 },
-    { opacity: 1, y: 0, duration: 0.5 }
+    { opacity: 0, y: 6 },
+    { opacity: 1, y: 0, duration: 0.7, ease: 'power1.out' }
   );
 
   if (lines.length) {
     gsap.to(lines, {
       opacity: 1,
-      duration: 0.32,
-      stagger: 0.14,
+      duration: 0.48,
+      stagger: 0.22,
       ease: 'power1.out',
-      delay: 0.25
+      delay: 0.4
     });
   }
 
@@ -377,8 +377,8 @@ function animateLetter() {
     { opacity: 0 },
     {
       opacity: 1,
-      duration: 0.55,
-      delay: 0.3 + (lines.length || 0) * 0.14
+      duration: 0.75,
+      delay: 0.5 + (lines.length || 0) * 0.22
     }
   );
 }
