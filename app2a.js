@@ -340,16 +340,23 @@ function prepareLetter() {
 
   if (body) {
     body.innerHTML = '';
-    CONFIG.invitationLetter
+    var text = CONFIG.invitationLetter
       .trim()
-      .split('\n')
-      .forEach(function (line) {
-        var span = document.createElement('span');
-        var empty = !line.trim();
-        span.className = empty ? 'line is-break' : 'line';
-        span.textContent = empty ? '\u00A0' : line;
-        body.appendChild(span);
-      });
+      .replace(/\{\{role\}\}/g, state.role || '')
+      .replace(/\{\{name\}\}/g, state.name || '');
+
+    text.split('\n').forEach(function (line) {
+      var span = document.createElement('span');
+      var empty = !line.trim();
+      span.className = empty ? 'line is-break' : 'line';
+      if (empty) {
+        span.textContent = '\u00A0';
+      } else {
+        /* Cho phép HTML (span.hl) trong dòng thư */
+        span.innerHTML = line;
+      }
+      body.appendChild(span);
+    });
   }
 }
 
