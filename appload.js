@@ -1,6 +1,8 @@
 (function(){
-  var code = (window.__APP_A||'')+(window.__APP_B||'')+(window.__APP_C||'');
-  if (!code) { console.error('[app] missing'); return; }
-  try { (0,eval)(code); }
-  catch (e) { console.error('[app]', e); }
+  if (typeof window.__S0 === 'string' && window.__S0) {
+    try { (0,eval)(window.__S0); }
+    catch(e){ console.error('[app]', e); }
+  } else {
+    console.error('[app] __S0 missing — check s0.js');
+  }
 })();
