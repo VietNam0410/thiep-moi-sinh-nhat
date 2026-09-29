@@ -16,21 +16,18 @@
 const CONFIG = {
 
   /* Nội dung lá thư (mỗi dòng = 1 dòng trên thiệp) */
-  invitationLetter: `Mình viết vài dòng này
-với rất nhiều chân thành.
+invitationLetter: `Bức thư này gửi đến {{role}} là những dòng tâm huyết và sự chân thành.
 
-Tuổi mới sắp tới —
-mình muốn được ngồi cùng
-những người quan trọng,
-uống một ly, kể vài câu chuyện,
-và cảm ơn vì đã ở bên.
+Không biết nói gì hơn, chỉ biết nói qua những lời thơ thế này:
 
-Không cần mang gì cầu kỳ.
-Chỉ cần bạn tới là đủ
-để buổi tối ấy trở nên đặc biệt.
+<span class="hl">Kính</span> trọng hạ thấp nghiên mình
+<span class="hl">Mời</span> {{role}} {{name}} gần xa tụ về
+<span class="hl">{{role}} {{name}}</span> cưng quá là mê
+<span class="hl">Tới</span> đây tham dự lễ ngày hạ sinh.
 
-Hẹn gặp bạn
-vào tối thứ Bảy tại Tà Vẹt.`,
+
+
+Lịch hẹn để vào trang sau.`,
 
   /* Thông tin người gửi & sự kiện */
   senderName: 'Việt Nam (Em Cưng)',
