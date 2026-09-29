@@ -54,7 +54,7 @@ vào tối thứ Bảy tại Tà Vẹt.`,
   wishlistSpecial: ['Sự có mặt của bạn tại bữa tiệc'],
 
   /* Google Apps Script endpoint — nhận RSVP POST JSON */
-  gasEndpoint: 'https://script.google.com/macros/s/AKfycbzVbCo612AhrmFpTEXShJvZ-KWWkQ-EleBiuN8UfCKLm6TTSVwNa59iv_MDbkwWtHCx/exec',
+  gasEndpoint: 'https://script.google.com/macros/s/AKfycbyNZipLSiZ7QCUs2oyczbvx-6AEYzFe_Rt5MfopDFM/exec',
 
   /* Không hiện link Sheet cho khách (để trống) */
   sheetUrl: ''
