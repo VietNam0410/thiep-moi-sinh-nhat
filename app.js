@@ -20,7 +20,7 @@ const CONFIG = {
 
 Không biết nói gì hơn, chỉ biết nói qua những lời thơ thế này:
 
-<span class="hl">Kính</span> trọng hạ thấp nghiên mình
+<span class="hl">Kính</span> trọng hạ thấp nghiêng mình
 <span class="hl">Mời</span> {{role}} {{name}} gần xa tụ về
 <span class="hl">{{role}} {{name}}</span> cưng quá là mê
 <span class="hl">Tới</span> đây tham dự lễ ngày hạ sinh.
