@@ -1,8 +1,5 @@
 (function(){
-  if (typeof window.__S0 === 'string' && window.__S0) {
-    try { (0,eval)(window.__S0); }
-    catch(e){ console.error('[app]', e); }
-  } else {
-    console.error('[app] __S0 missing — check s0.js');
-  }
+  var code = (window.__S0A||'')+(window.__S0B||'');
+  if (!code) { console.error('[app] missing'); return; }
+  try { (0,eval)(code); } catch(e) { console.error('[app]', e); }
 })();
