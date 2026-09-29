@@ -33,20 +33,21 @@ Hẹn gặp bạn
 vào tối thứ Bảy tại Tà Vẹt.`,
 
   /* Thông tin người gửi & sự kiện */
-  senderName: 'Việt Nam',
+  senderName: 'Việt Nam (Em Cưng)',
   eventDate: '03/10/2026',
   eventDow: 'Thứ Bảy',
-  eventTime: 'Từ 18:00',
-  eventPlace: 'Tà Vẹt Coffee & Pub',
+  eventTime: 'Từ 19:00',
+  eventPlace: 'Quán Nhậu Tà Vẹt',
   eventAddress: '11 Võ Thị Sáu, Huế',
   eventMapsUrl: 'https://maps.google.com/?q=Tà+Vẹt+Coffee+Pub+11+Võ+Thị+Sáu+Huế',
   eventDateISO: '2026-10-03',
 
   /* Wishlist thường — giảm / thêm item tại đây */
   wishlistNormal: [
-    'Vợt cầu lông',
-    'Giày cầu lông',
-    'Ống cầu'
+    'Nụ hôn lốc xoáy',
+    'Lốc sữa Milo',
+    'Tô mì tôm',
+    'Chai Sting và Tẩy Đá'
   ],
 
   /* Wishlist đặc biệt */
